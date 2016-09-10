@@ -61,6 +61,7 @@ class GroceryAisleForm(ModelForm):
     """used by users to add a new aisle"""
     class Meta:
         model = GroceryAisle
+        exclude = []
         widgets = {'author': HiddenInput()}
 
     def clean(self):
