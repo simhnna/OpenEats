@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from django.contrib import admin
-from models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
+from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
 from imagekit.admin import AdminThumbnail
 from ingredient.models import Ingredient
-from forms import IngItemFormSet
+from .forms import IngItemFormSet
 from django.shortcuts import render_to_response
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin

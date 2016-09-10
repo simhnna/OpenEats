@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 from django.forms import ModelForm
 from django.template.loader import render_to_string
-from models import Recipe
+from .models import Recipe
 from recipe_groups.models import Course, Cuisine
 import django.forms as forms
 from django.forms.models import BaseInlineFormSet

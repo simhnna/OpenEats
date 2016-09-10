@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
-from models import Entry
+from .models import Entry
 
 
 def entry(request, slug):
