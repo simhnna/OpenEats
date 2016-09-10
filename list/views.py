@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -20,7 +20,7 @@ def index(request):
     """returns a list of grocery list for a user"""
     glist = GroceryList.objects.filter(author=request.user).order_by('-pub_date')
     gshared = GroceryShared.objects.filter(shared_to=request.user).order_by('-list__pub_date')
-    return render_to_response('list/grocery_index.html', {'glists': glist, 'gshared': gshared}, context_instance=RequestContext(request))
+    return render(request, 'list/grocery_index.html', {'glists': glist, 'gshared': gshared})
 
 
 @login_required
@@ -88,7 +88,7 @@ def groceryCreate(request, user=None, slug=None):
         form = GroceryListForm(instance=cur_list)
         formset = ItemFormSet(instance=cur_list, user=owner)
 
-    return render_to_response('list/grocerylist_form.html', {'form': form, 'formset': formset, 'user': owner}, context_instance=RequestContext(request))
+    return render(request, 'list/grocerylist_form.html', {'form': form, 'formset': formset, 'user': owner})
 
 
 @login_required
@@ -108,14 +108,14 @@ def groceryShow(request, slug, user, template_name='list/grocery_detail.html'):
             messages.error(request, output)
             return redirect('grocery_list')
         
-    return render_to_response(template_name, {'list': list}, context_instance=RequestContext(request))
+    return render(template_name, {'list': list})
 
 
 @login_required
 def groceryProfile(request):
     """Returns a list of a users grocery list to be displayed on the users profile"""
     list = GroceryList.objects.filter(author=request.user)
-    return render_to_response('list/grocery_ajax.html', {'lists': list}, context_instance=RequestContext(request))
+    return render('list/grocery_ajax.html', {'lists': list})
 
 
 @login_required
@@ -159,7 +159,7 @@ def groceryAddRecipe(request, recipe_slug):
         recipe = get_object_or_404(Recipe, slug=recipe_slug)
         form = GroceryUserList(user=request.user)
   
-        return render_to_response('list/grocery_addrecipe.html', {'form': form, 'recipe': recipe}, context_instance=RequestContext(request))
+        return render(request, 'list/grocery_addrecipe.html', {'form': form, 'recipe': recipe})
 
 
 @login_required
@@ -176,7 +176,7 @@ def groceryShareList(request, user, slug):
     else:
         form = GroceryShareTo()
         form.fields['shared_to'].queryset = request.user.relationships.followers()  # only allow people who are following a user to be allowed to have list shared to them
-    return render_to_response('list/grocery_share.html', {'form': form, 'list': list}, context_instance=RequestContext(request))
+    return render(request, 'list/grocery_share.html', {'form': form, 'list': list})
 
 
 @login_required
@@ -199,7 +199,7 @@ def groceryMail(request, gid):
             return HttpResponse("grocery list mail sent to " + request.POST['to_email'])
     else:
         form = GrocerySendMail(request=request)
-    return render_to_response('list/grocery_email.html', {'form': form, 'gid': gid}, context_instance=RequestContext(request))
+    return render('list/grocery_email.html', {'form': form, 'gid': gid})
 
 
 @login_required
@@ -219,7 +219,7 @@ def groceryAisle(request):
     else:
         form = GroceryAisleForm(instance=grocery_aisle)
 
-    return render_to_response('list/groceryaisle_form.html', {'form': form, 'aisles': aisles}, context_instance=RequestContext(request))
+    return render(request, 'list/groceryaisle_form.html', {'form': form, 'aisles': aisles})
 
 
 @login_required
@@ -232,4 +232,4 @@ def groceryAisleAjaxDelete(request):
             except GroceryList.DoesNotExist:
                 raise Http404
             aisle.delete()
-    return render_to_response("/list/_aisles.html", {'aisles': aisles}, context_instance=RequestContext(request))
+    return render(request, "/list/_aisles.html", {'aisles': aisles})

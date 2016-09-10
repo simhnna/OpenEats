@@ -1,6 +1,6 @@
-from django.shortcuts import render_to_response, get_object_or_404, redirect
 from __future__ import absolute_import
 
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
@@ -26,7 +26,7 @@ from reportlab.pdfbase.pdfmetrics import registerFontFamily
 
 def index(request):
     recipe_list = Recipe.objects.filter(shared=Recipe.SHARE_SHARED).exclude(photo='').order_by('-pub_date')[0:6]
-    return render_to_response('recipe/index.html', {'new_recipes': recipe_list}, context_instance=RequestContext(request))
+    return render(request, 'recipe/index.html', {'new_recipes': recipe_list})
 
 
 def recipeShow(request, slug):
@@ -52,7 +52,7 @@ def recipeShow(request, slug):
         output = _("Recipe %s is marked Private") % recipe.slug
         raise Http404(output)
     else:
-        return render_to_response('recipe/recipe_detail.html', {'recipe': recipe, 'note': note}, context_instance=RequestContext(request))
+        return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'note': note})
 
 
 def recipePrint(request, slug):
@@ -67,7 +67,7 @@ def recipePrint(request, slug):
         output = _("Recipe %s is marked Private") % recipe.slug
         raise Http404(output)
     else:
-        return render_to_response('recipe/recipe_print.html', {'recipe': recipe, 'note': note}, context_instance=RequestContext(request))
+        return render(request, 'recipe/recipe_print.html', {'recipe': recipe, 'note': note})
 
 
 @login_required
@@ -100,7 +100,7 @@ def recipe(request, user=None, slug=None):
             form.fields['title'].widget.attrs['readonly'] = True
         
         formset = IngFormSet(instance=recipe_inst)
-    return render_to_response('recipe/recipe_form.html', {'form': form, 'formset': formset, }, context_instance=RequestContext(request))
+    return render('recipe/recipe_form.html', {'form': form, 'formset': formset, })
 
 
 def recipeUser(request, shared, user):
@@ -112,7 +112,7 @@ def recipeUser(request, shared, user):
     else:
         recipe_list = Recipe.objects.filter(author__username=user, shared=Recipe.PRIVATE_SHARED).order_by('-pub_date')
        
-    return render_to_response('recipe/recipe_userlist.html', {'recipe_list': recipe_list, 'user': user, 'shared': shared}, context_instance=RequestContext(request))
+    return render(request, 'recipe/recipe_userlist.html', {'recipe_list': recipe_list, 'user': user, 'shared': shared})
 
 
 @login_required
@@ -175,7 +175,7 @@ def recipeUserFavs(request):
     recipe_list = []
     for stored in stored_list:
         recipe_list.append(stored.recipe)
-    return render_to_response('recipe/recipe_userfav.html', {'recipe_list': recipe_list}, context_instance=RequestContext(request))
+    return render(request, 'recipe/recipe_userfav.html', {'recipe_list': recipe_list})
 
 
 @login_required
@@ -300,7 +300,7 @@ def recipeMail(request, id):
             return HttpResponse("recipe sent to " + request.POST['to_email'])
     else:
         form = RecipeSendMail(request=request)
-    return render_to_response('recipe/recipe_email.html', {'form': form, 'id': id}, context_instance=RequestContext(request))
+    return render(request, 'recipe/recipe_email.html', {'form': form, 'id': id})
 
 
 class CookList(DetailView):

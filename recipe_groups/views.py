@@ -1,6 +1,6 @@
-from django.shortcuts import render_to_response, get_object_or_404
 from __future__ import absolute_import
 
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 from django.views.generic import ListView
 from django.views.generic.edit import  CreateView, UpdateView
@@ -17,7 +17,7 @@ def course_recipes(request, slug):
     course_object = get_object_or_404(Course, slug=slug)
     recipe_list = course_object.recipe_set.filter(shared=Recipe.SHARE_SHARED)
     
-    return render_to_response('recipe_groups/recipe_list.html', {'recipe_list': recipe_list, 'category': course_object.title}, context_instance=RequestContext(request))
+    return render(request, 'recipe_groups/recipe_list.html', {'recipe_list': recipe_list, 'category': course_object.title})
 
 
 def cuisine_recipes(request, slug):
@@ -25,7 +25,7 @@ def cuisine_recipes(request, slug):
     cuisine_object = get_object_or_404(Cuisine, slug=slug)
     recipe_list = cuisine_object.recipe_set.filter(shared=Recipe.SHARE_SHARED)
        
-    return render_to_response('recipe_groups/recipe_list.html', {'recipe_list': recipe_list, 'category': cuisine_object.title}, context_instance=RequestContext(request))
+    return render(request, 'recipe_groups/recipe_list.html', {'recipe_list': recipe_list, 'category': cuisine_object.title})
 
 
 @login_required

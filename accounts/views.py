@@ -1,6 +1,6 @@
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.conf import settings
 from django.contrib import messages
@@ -21,4 +21,4 @@ def logout_page(request):
 def signIn_page(request):
     """This combines the sign in and the create user forms into one page using jquery UI tabs and is called from the nav bar"""
 
-    return render_to_response('accounts/signIn_page.html', context_instance=RequestContext(request))
+    return render(request, 'accounts/signIn_page.html')

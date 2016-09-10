@@ -1,8 +1,8 @@
 from django.http import Http404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, get_object_or_404
 from relationships.decorators import require_user
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from relationships.models import RelationshipStatus
 
@@ -26,7 +26,7 @@ def follow_list(request, username):
     followers_list = user.relationships.get_related_to(status=follower_status)
     blocking_list = user.relationships.blocking()
 
-    return render_to_response('friends/list.html', {'following_list': following_list, 'followers_list': followers_list, 'blocking_list': blocking_list, 'username':  user.username}, context_instance=RequestContext(request))
+    return render(request, 'friends/list.html', {'following_list': following_list, 'followers_list': followers_list, 'blocking_list': blocking_list, 'username':  user.username})
 
 
 @login_required
@@ -36,4 +36,4 @@ def feed(request, username):
     user = get_object_or_404(User, username=username)
     following = user.relationships.following()
 
-    return render_to_response('friends/feed.html', {'following_list': following}, context_instance=RequestContext(request))
+    return render(request, 'friends/feed.html', {'following_list': following})
