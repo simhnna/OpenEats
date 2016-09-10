@@ -54,7 +54,7 @@ class CustomIndexDashboard(Dashboard):
                     _('Administration'),
                     column=1,
                     collapsible=False,
-                    models=('django.contrib.*','registration','openeats.accounts'),
+                    models=('django.contrib.*','registration','accounts'),
                 ),
             ]
         ))
@@ -64,7 +64,7 @@ class CustomIndexDashboard(Dashboard):
             title="OpenEats2 Applications",
             collapsible=True,
             column=1,
-            models=('openeats.*','recipe*',),
+            models=('recipe*',),
         ))
 
         # append an app list module for "Administration"

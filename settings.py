@@ -121,7 +121,7 @@ LOCALE_PATHS = (
   os.path.join(BASE_PATH, 'locale',)
 )
 
-ROOT_URLCONF = 'openeats.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
    os.path.join(BASE_PATH, 'templates'),
@@ -154,13 +154,12 @@ INSTALLED_APPS = (
     'django_extensions',
     'relationships',
     'tastypie',
-    'openeats',
-    'openeats.recipe',
-    'openeats.recipe_groups',
-    'openeats.ingredient',
-    'openeats.accounts',
-    'openeats.news',
-    'openeats.list',
+    'recipe',
+    'recipe_groups',
+    'ingredient',
+    'accounts',
+    'news',
+    'list',
 )
 
 
@@ -200,7 +199,7 @@ HAYSTACK_CONNECTIONS = {
 
 
 GRAPPELLI_ADMIN_TITLE = OETITLE
-GRAPPELLI_INDEX_DASHBOARD = 'openeats.dashboard.CustomIndexDashboard'
+GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
 
 PAGINATION_DEFAULT_PAGINATION = 10
 

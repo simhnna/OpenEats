@@ -1,5 +1,5 @@
 from django.core.management.base import NoArgsCommand, CommandError
-from openeats.recipe.models import Recipe
+from recipe.models import Recipe
 from django.template import Context, loader
 
 class Command(NoArgsCommand):
