@@ -223,7 +223,7 @@ def paginate(context, window=DEFAULT_WINDOW, hashtag=''):
             else:
                 to_return['getvars'] = ''
         return to_return
-    except KeyError, AttributeError:
+    except (KeyError, AttributeError) as e:
         return {}
 
 register.inclusion_tag('pagination/pagination.html', takes_context=True)(
