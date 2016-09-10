@@ -107,7 +107,7 @@ class GrocerySendMail(forms.Form):
         if self.is_valid():
             list = GroceryList.objects.get(pk = self.cleaned_data['gid'])
             template_name = 'list/grocery_mail_body.html'  # template that contains the email body and also shared by the grocery print view
-            message = loader.render_to_string(template_name, {'list': list}, context_instance=RequestContext(self.request))
+            message = loader.render_to_string(template_name, {'list': list}, request=self.request)
             return message
         else:
             raise ValueError(_('Can not get grocery list id from invalid form data'))
