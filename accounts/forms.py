@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+
 from django.forms import ModelForm
 from django import forms
 from django.forms.widgets import RadioSelect
-from models import UserProfiles
+from .models import UserProfiles
 from django.contrib.auth.models import User
 
 

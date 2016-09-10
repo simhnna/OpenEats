@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 import datetime
 from haystack import indexes
-from models import Recipe
+from .models import Recipe
 
 
 class RecipeIndex(indexes.SearchIndex, indexes.Indexable):

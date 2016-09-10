@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 from django.http import HttpResponse
 from django.utils import simplejson
-from models import Ingredient
+from .models import Ingredient
 
 
 def autocomplete_ing(request):

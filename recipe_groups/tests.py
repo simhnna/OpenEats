@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 from django.test import TestCase
 from django.db import IntegrityError
-from models import Course, Cuisine
+from .models import Course, Cuisine
 from django.contrib.auth.models import User
 
 class CourseTest(TestCase):

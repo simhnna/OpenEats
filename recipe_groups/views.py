@@ -1,12 +1,14 @@
 from django.shortcuts import render_to_response, get_object_or_404
+from __future__ import absolute_import
+
 from django.template import RequestContext
 from django.views.generic import ListView
 from django.views.generic.edit import  CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
-from models import Course, Cuisine
+from .models import Course, Cuisine
 from recipe.models import Recipe
 from django.contrib.auth.decorators import login_required
-from forms import CoursePopForm, CuisinePopForm
+from .forms import CoursePopForm, CuisinePopForm
 from helpers.form_helper import handlePopAdd
 
 

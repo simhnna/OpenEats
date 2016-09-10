@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 from django.conf.urls import *
-from recipe_groups.views import CourseList, CuisineList, CuisineCreate, CuisineUpdate, CourseCreate, CourseUpdate
-from models import Course, Cuisine
+from recipe_groups.views import CourseList, CuisineList, CuisineCreate, CuisineUpdate, CourseCreate, CourseUpdate, course_pop, course_recipes, cuisine_pop, cuisine_recipes
+from .models import Course, Cuisine
 
 course_info = {
                 "queryset":Course.objects.all(),

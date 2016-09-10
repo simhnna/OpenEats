@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
@@ -8,8 +10,8 @@ from django.core.urlresolvers import reverse
 from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext as _
 from recipe.models import Recipe
-from models import GroceryList, GroceryItem, GroceryShared, GroceryAisle, GroceryRecipe
-from forms import GroceryListForm, GroceryItemFormSet, GroceryUserList, GrocerySendMail, GroceryShareTo, GroceryAisleForm
+from .models import GroceryList, GroceryItem, GroceryShared, GroceryAisle, GroceryRecipe
+from .forms import GroceryListForm, GroceryItemFormSet, GroceryUserList, GrocerySendMail, GroceryShareTo, GroceryAisleForm
 from datetime import date
 
 

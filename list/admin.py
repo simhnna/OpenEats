@@ -1,6 +1,8 @@
+from __future__ import absolute_import
+
 from django.contrib import admin
-from models import GroceryList, GroceryItem, GroceryAisle, GroceryShared,GroceryRecipe
-from forms import GroceryItemFormSet
+from .models import GroceryList, GroceryItem, GroceryAisle, GroceryShared,GroceryRecipe
+from .forms import GroceryItemFormSet
 
 
 class GroceryListInline(admin.TabularInline):

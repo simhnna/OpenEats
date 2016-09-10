@@ -1,8 +1,10 @@
+from __future__ import absolute_import
+
 from django.forms import ModelForm, forms
 import django.forms as forms
 from django.forms.widgets import HiddenInput
 from django.http import HttpResponse
-from models import GroceryList,GroceryShared,GroceryAisle
+from .models import GroceryList,GroceryShared,GroceryAisle
 from django.forms.models import BaseInlineFormSet
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import EmailMessage, BadHeaderError
