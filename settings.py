@@ -78,26 +78,29 @@ SECRET_KEY = 'tk1ig_pa_p9^muz4vw4%#q@0no$=ce1*b$#s343jouyq9lj)k33j('
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfiles'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.media",
-    'django.core.context_processors.static',
-    "django.core.context_processors.request",
-    "django.contrib.messages.context_processors.messages",
-    "navbar.context_processors.navbars",
-    "openeats.context_processors.oelogo",
-    "openeats.context_processors.oetitle",
-
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_PATH, 'templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                'django.template.context_processors.static',
+                "django.template.context_processors.request",
+                "django.contrib.messages.context_processors.messages",
+#                "navbar.context_processors.navbars",
+                "context_processors.oelogo",
+                "context_processors.oetitle",
+            ],
+        },
+    },
+]
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -123,9 +126,6 @@ LOCALE_PATHS = (
 
 ROOT_URLCONF = 'urls'
 
-TEMPLATE_DIRS = (
-   os.path.join(BASE_PATH, 'templates'),
-)
 
 INSTALLED_APPS = (
     'grappelli.dashboard',
