@@ -1,5 +1,8 @@
-from django.conf.urls import *
+from  __future__ import absolute_import
 
-urlpatterns = patterns('',
-   (r'^auto/$', 'ingredient.views.autocomplete_ing'),
-)
+from django.conf.urls import *
+from .views import autocomplete_ing
+
+urlpatterns = [
+   url(r'^auto/$', autocomplete_ing),
+]

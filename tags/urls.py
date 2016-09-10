@@ -1,5 +1,8 @@
-from django.conf.urls import *
+from __future__ import absolute_import
 
-urlpatterns = patterns('',
-    url(r'^recipe/(?P<tag>[-\w]+)/$', 'tags.views.recipeTags', name="recipe_tags"),
-)
+from django.conf.urls import *
+from .views import recipeTags
+
+urlpatterns = [
+    url(r'^recipe/(?P<tag>[-\w]+)/$', recipeTags, name="recipe_tags"),
+]
