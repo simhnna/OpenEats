@@ -12,7 +12,7 @@ from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
 from ingredient.models import Ingredient
 from .forms import RecipeForm,IngItemFormSet, RecipeSendMail
 from djangoratings.views import AddRatingView
-from django.utils import simplejson
+import json
 from django.conf import settings
 from django.db.models import F
 from reportlab.lib import colors
@@ -132,7 +132,7 @@ def recipeRate(request, object_id, score):
     avg = r.rating.score / r.rating.votes
     results['avg'] = avg
     results['votes'] = r.rating.votes
-    json = simplejson.dumps(results)
+    json = json.dumps(results)
     return HttpResponse(json, mimetype="application/json")
 
 
