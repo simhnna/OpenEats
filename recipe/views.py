@@ -100,7 +100,7 @@ def recipe(request, user=None, slug=None):
             form.fields['title'].widget.attrs['readonly'] = True
         
         formset = IngFormSet(instance=recipe_inst)
-    return render('recipe/recipe_form.html', {'form': form, 'formset': formset, })
+    return render(request, 'recipe/recipe_form.html', {'form': form, 'formset': formset, })
 
 
 def recipeUser(request, shared, user):

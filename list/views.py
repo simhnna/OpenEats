@@ -108,14 +108,14 @@ def groceryShow(request, slug, user, template_name='list/grocery_detail.html'):
             messages.error(request, output)
             return redirect('grocery_list')
         
-    return render(template_name, {'list': list})
+    return render(request, template_name, {'list': list})
 
 
 @login_required
 def groceryProfile(request):
     """Returns a list of a users grocery list to be displayed on the users profile"""
     list = GroceryList.objects.filter(author=request.user)
-    return render('list/grocery_ajax.html', {'lists': list})
+    return render(request, 'list/grocery_ajax.html', {'lists': list})
 
 
 @login_required
@@ -199,7 +199,7 @@ def groceryMail(request, gid):
             return HttpResponse("grocery list mail sent to " + request.POST['to_email'])
     else:
         form = GrocerySendMail(request=request)
-    return render('list/grocery_email.html', {'form': form, 'gid': gid})
+    return render(request, 'list/grocery_email.html', {'form': form, 'gid': gid})
 
 
 @login_required
