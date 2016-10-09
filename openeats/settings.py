@@ -94,9 +94,10 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
-#                "navbar.context_processors.navbars",
-                "context_processors.oelogo",
-                "context_processors.oetitle",
+                "navbar.context_processors.navbar",
+                "navbar.context_processors.navbars",
+                "openeats.context_processors.oelogo",
+                "openeats.context_processors.oetitle",
             ],
         },
     },
@@ -126,6 +127,7 @@ LOCALE_PATHS = (
 
 ROOT_URLCONF = 'urls'
 
+ROOT_URLCONF = 'openeats.urls'
 
 INSTALLED_APPS = (
     'grappelli.dashboard',
