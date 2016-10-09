@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from recipe.models import Recipe
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class GroceryList(models.Model):
     title = models.CharField(_("grocery list title"), max_length=250)
     slug = AutoSlugField(_('slug'), populate_from='title')
@@ -14,7 +16,7 @@ class GroceryList(models.Model):
     class Meta:
         ordering = ['pub_date']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_shared(self):
@@ -32,6 +34,7 @@ class GroceryList(models.Model):
         return "/grocery/%s/%s/" % (self.author, self.slug)
 
 
+@python_2_unicode_compatible
 class GroceryAisle(models.Model):
     """simple table to hold aisle names for the grocery list"""
     aisle = models.CharField(_('aisle'), max_length=100)
@@ -40,10 +43,11 @@ class GroceryAisle(models.Model):
     class Meta:
         ordering = ['aisle']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.aisle
 
 
+@python_2_unicode_compatible
 class GroceryItem(models.Model):
     list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'), related_name='items')
     item = models.CharField(_("item"), max_length=550)
@@ -52,10 +56,11 @@ class GroceryItem(models.Model):
     class Meta:
         ordering = ['aisle', 'item']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.item
 
 
+@python_2_unicode_compatible
 class GroceryShared(models.Model):
     list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'))
     shared_by = models.ForeignKey(User, verbose_name=_('shared by'), related_name="shared_by")
@@ -70,13 +75,14 @@ class GroceryShared(models.Model):
             self.shared_by = self.list.author
         super(GroceryShared, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.list.title
 
 
+@python_2_unicode_compatible
 class GroceryRecipe(models.Model):
     list = models.ForeignKey(GroceryList, verbose_name=_('grocery list'))
     recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
 
-    def __unicode__(self):
+    def __str__(self):
         return self.recipe.title

@@ -5,8 +5,10 @@ from recipe_groups.models import Course, Cuisine
 from djangoratings.fields import RatingField
 from django_extensions.db.fields import AutoSlugField
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Recipe(models.Model):
     SHARE_SHARED = 0
     PRIVATE_SHARED = 1
@@ -35,7 +37,7 @@ class Recipe(models.Model):
     class Meta:
         ordering = ['pub_date', 'title']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
@@ -46,14 +48,16 @@ class Recipe(models.Model):
             return True        
 
 
+@python_2_unicode_compatible
 class StoredRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
     user = models.ForeignKey(User, verbose_name=_('user'))
 
-    def __unicode__(self):
+    def __str__(self):
         return self.recipe.title
 
 
+@python_2_unicode_compatible
 class NoteRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
     author = models.ForeignKey(User, verbose_name=_('author'))
@@ -62,10 +66,11 @@ class NoteRecipe(models.Model):
     class meta:
         verbose_name_plural = "Recipe Notes"
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s note for %s" % (self.author, self.recipe)
 
 
+@python_2_unicode_compatible
 class ReportedRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), unique=True)
     reported_by = models.ForeignKey(User, verbose_name=_('author'))
@@ -73,6 +78,6 @@ class ReportedRecipe(models.Model):
 
     class Meta:
         ordering = ['pub_date', 'recipe']
-    
-    def __unicode__(self):
+
+    def __str__(self):
         return self.recipe.title
