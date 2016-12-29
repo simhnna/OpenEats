@@ -25,7 +25,7 @@ class TopRecipesFeed(Feed):
     description =_("Top recipes on ") + settings.OETITLE
 
     def items(self):
-        rating_qs = Recipe.objects.extra(select={'rate': '((100/%s*rating_score/(rating_votes+%s))+100)/2' % (Recipe.rating.range, Recipe.rating.weight)})
+        rating_qs = Recipe.objects.extra(select={'rate': '((100/%s*rating_score/(rating_votes+%s))+100)/2' % (Recipe.rating.range, max(Recipe.rating.weight, 1))})
         return rating_qs.filter(shared=Recipe.SHARE_SHARED).order_by('-rate')[:10]
 
     def item_title(self, item):
