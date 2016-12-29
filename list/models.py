@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from recipe.models import Recipe
 from django.utils.encoding import python_2_unicode_compatible
+from functools import total_ordering
 
 
 @python_2_unicode_compatible
@@ -34,6 +35,7 @@ class GroceryList(models.Model):
         return "/grocery/%s/%s/" % (self.author, self.slug)
 
 
+@total_ordering
 @python_2_unicode_compatible
 class GroceryAisle(models.Model):
     """simple table to hold aisle names for the grocery list"""
@@ -45,6 +47,9 @@ class GroceryAisle(models.Model):
 
     def __str__(self):
         return self.aisle
+
+    def __lt__(self, other):
+        return self.aisle < other.aisle
 
 
 @python_2_unicode_compatible
