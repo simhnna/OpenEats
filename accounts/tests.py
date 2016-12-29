@@ -18,8 +18,8 @@ class accountViewsTestCase(WebTest):
         form['username'] = 'testUser'
         form['password'] = 'password'
         resp = form.submit()
-        self.assertEqual(resp.status, '302 FOUND')
         self.assertEqual(resp.location, 'http://localhost:80' + reverse('recipe_index'))
+        self.assertEqual(resp.status_code, 302)
 
     def test_bad_login(self):
         """make sure an error is thrown when someone can't login"""
@@ -27,7 +27,7 @@ class accountViewsTestCase(WebTest):
         form['username'] = 'testUser'
         form['password'] = 'baspassword'
         resp = form.submit()
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
 
     def test_create_user(self):
         """test that a user can be created"""

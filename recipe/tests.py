@@ -31,7 +31,7 @@ class recipeViewsTestCase(WebTest):
     def test_create(self):
         """test the creation of a recipe using the form"""
         resp = self.app.get(reverse('new_recipe'), user='testUser')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         form = resp.forms[1]
         form['title'] = 'my recipe'
         form['course'] = 1
@@ -62,11 +62,11 @@ class recipeViewsTestCase(WebTest):
         self.assertEqual(recipe.shared, 1)
 
         resp = self.app.get(reverse('recipe_show',kwargs={'slug': recipe.slug}), user='testUser2',status=404)
-        self.assertEqual(resp.status, '404 NOT FOUND')
+        self.assertEqual(resp.status_code, 404)
 
         #test that the owner of the recipe can access it
         resp = self.app.get(reverse('recipe_show',kwargs={'slug': recipe.slug}), user='testUser')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.context['recipe'].title, 'my recipe')
 
     def test_rate(self):
@@ -78,8 +78,8 @@ class recipeViewsTestCase(WebTest):
 
         #add a vote
         resp = self.app.get(reverse('recipe_rate',kwargs={'object_id':1, 'score':4}), user='testUser')
-        self.assertEqual(resp.status, '200 OK')
         self.assertTrue('Vote recorded.' in resp)
+        self.assertEqual(resp.status_code, 200)
 
     def test_store(self):
         """test a user can store a recipe"""
@@ -91,12 +91,12 @@ class recipeViewsTestCase(WebTest):
         self.assertFalse(stored)
 
         resp = self.app.post(reverse('recipe_store',kwargs={'object_id':1}),{'object_id':1}, user='testUser')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         self.assertTrue('Recipe added to your favorites!' in resp)
 
         #try storing a recipe that you already have stored
         resp = self.app.post(reverse('recipe_store',kwargs={'object_id':1}),{'object_id':1}, user='testUser')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         self.assertTrue('Recipe already in your favorites!' in resp)
 
         #check it is really stored in the DB
@@ -111,7 +111,7 @@ class recipeViewsTestCase(WebTest):
         self.test_store()  #call this to store a recipe in the DB
 
         resp = self.app.post(reverse('recipe_unstore'),{'recipe_id':1}, user='testUser')
-        self.assertEqual(resp.status, '302 FOUND')
+        self.assertEqual(resp.status_code, 302)
 
         #verify it was removed from the DB
         stored = StoredRecipe.objects.filter(user=user, recipe=recipe)
@@ -119,14 +119,14 @@ class recipeViewsTestCase(WebTest):
 
         #try to store a non-existent recipe should raise 404
         resp = self.app.post(reverse('recipe_unstore'),{'recipe_id':10000}, user='testUser', status=404)
-        self.assertEqual(resp.status, '404 NOT FOUND')
+        self.assertEqual(resp.status_code, 404)
 
     def test_report(self):
         """test that a recipe is reported bad when a user reports it"""
         recipe = Recipe.objects.get(pk=1)
         self.assertFalse(recipe.get_reported())
         resp = self.app.post(reverse('recipe_report', kwargs={'slug':recipe.slug}),user='testUser2')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         self.assertTrue('Recipe reported to the moderators!' in resp)
 
         #check it updated the DB
@@ -135,11 +135,11 @@ class recipeViewsTestCase(WebTest):
 
         #try to report a recipe that does not exist
         resp = self.app.post(reverse('recipe_report', kwargs={'slug':'bad-recipe'}),user='testUser2', status=404)
-        self.assertEqual(resp.status, '404 NOT FOUND')
+        self.assertEqual(resp.status_code, 404)
 
         #try to report a recipe that is already reported
         resp = self.app.post(reverse('recipe_report', kwargs={'slug':recipe.slug}),user='testUser2')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         self.assertTrue('Recipe has already been reported!' in resp)
 
 
@@ -159,7 +159,7 @@ class recipeViewsTestCase(WebTest):
         self.assertEqual(recipe.servings, 8)
         self.assertEqual(recipe.ingredients.count(), 12)
         resp = self.app.get(reverse('recipe_edit', kwargs={'user':'admin', 'slug':recipe.slug}), user='admin')
-        self.assertEqual(resp.status, '200 OK')
+        self.assertEqual(resp.status_code, 200)
         self.assertTrue(resp.forms[1])
         form = resp.forms[1]
         form['servings'] = 10
@@ -177,11 +177,11 @@ class recipeViewsTestCase(WebTest):
 
         #test editing a non-existant recipe
         resp = self.app.get(reverse('recipe_edit', kwargs={'user':'admin', 'slug':'bad-recipe'}), user='admin', status=404)
-        self.assertEqual(resp.status, '404 NOT FOUND')
+        self.assertEqual(resp.status_code, 404)
 
         #try having another user edit someone elses recipe
         resp = self.app.get(reverse('recipe_edit', kwargs={'user':'admin', 'slug':recipe.slug}), user='testUser', status=404)
-        self.assertEqual(resp.status, '404 NOT FOUND')
+        self.assertEqual(resp.status_code, 404)
 
 
 
