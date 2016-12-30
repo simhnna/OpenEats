@@ -132,8 +132,8 @@ def recipeRate(request, object_id, score):
     avg = r.rating.score / r.rating.votes
     results['avg'] = avg
     results['votes'] = r.rating.votes
-    json = json.dumps(results)
-    return HttpResponse(json, mimetype="application/json")
+    json_result = json.dumps(results)
+    return HttpResponse(json_result, content_type="application/json")
 
 
 @login_required
