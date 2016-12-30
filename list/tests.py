@@ -64,7 +64,7 @@ class listViewsTestCase(TestCase):
         }
 
         self.assertEqual(list.items.count(), 2)
-        resp = self.client.post(reverse('grocery_edit',kwargs={'user':'testUser', 'slug':'test'}), data)
+        resp = self.client.post(reverse('grocery_edit', kwargs={'user':'testUser', 'slug':'test'}), data)
         self.assertEqual(resp.status_code, 302)
         self.assertRedirects(resp, reverse('grocery_show',kwargs={'user':'testUser', 'slug':'test'}))
         self.assertEqual(list.items.count(), 3)
