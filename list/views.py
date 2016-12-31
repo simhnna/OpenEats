@@ -30,6 +30,7 @@ def groceryDelete(request, id):
     output = _('Your grocery list has been removed.')
     messages.success(request, output)
     return HttpResponseRedirect(reverse('list.views.index'))
+    return HttpResponseRedirect(reverse('grocery_list'))
 
 
 @login_required
