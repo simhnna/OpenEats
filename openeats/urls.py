@@ -1,4 +1,6 @@
 from django.conf.urls import *
+from __future__ import absolute_import
+
 from django.conf import settings
 from django.views.generic import TemplateView
 from accounts.forms import ProfileForm
