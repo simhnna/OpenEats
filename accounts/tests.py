@@ -64,6 +64,3 @@ class accountViewsTestCase(WebTest):
         #check a unknown user throws a 404 on the profile page
         profile = self.app.get(reverse('profiles_profile_detail', kwargs={'username':'badUser'}),status=404)
         self.assertTrue(profile.status_code, 404)
-
-        
-
