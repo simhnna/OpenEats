@@ -24,7 +24,7 @@
            {% if shared = 'share'  %}
               {% autopaginate recipe_list 3  %}
               {% for recipe in recipe_list %}
-                 {% include '/recipe/_list.html' %}
+                 {% include '../recipe/_list.html' %}
               {% endfor %}
               {% paginate %}
            {% endif %}
@@ -32,7 +32,7 @@
            {% if user == request.user.username and shared == 'private' %}
               {% autopaginate recipe_list %}
               {% for recipe in recipe_list %}
-                {% include '/recipe/_list.html' %}
+                {% include '../recipe/_list.html' %}
               {% endfor %}
               {% paginate %}
            {% endif %}
