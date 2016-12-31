@@ -11,7 +11,7 @@ class UserProfiles(models.Model):
         ('F', _('Female')),
     )
 
-    user = models.ForeignKey(User, verbose_name=_('user'), unique=True)
+    user = models.OneToOneField(User, related_name="profile")
     about = models.TextField(_('about'), blank=True,default="Tell everyone something about yourself")
     gender = models.CharField(_('gender'), max_length=5, choices=GENDER_CHOICES, help_text="What are ya?", null=True, default='None')
     url = models.URLField(_('url'), blank=True)

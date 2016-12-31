@@ -77,7 +77,6 @@ STATIC_URL = '/static-files/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'tk1ig_pa_p9^muz4vw4%#q@0no$=ce1*b$#s343jouyq9lj)k33j('
 
-AUTH_PROFILE_MODULE = 'accounts.UserProfiles'
 
 TEMPLATES = [
     {

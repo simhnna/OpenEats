@@ -45,7 +45,7 @@
                      {{ request.user }} <span class="caret"></span>
                  </a>
                  <ul class="dropdown-menu" role="menu">
-                   <li><a href="{{request.user.get_profile.get_absolute_url}}"><i class="glyphicon glyphicon-user"></i> {% trans 'profile' %}</a></li>
+                   <li><a href="{{request.user.profile.get_absolute_url}}"><i class="glyphicon glyphicon-user"></i> {% trans 'profile' %}</a></li>
                    <li><a href="{% url 'grocery_list' %}"><i class="glyphicon glyphicon-list"></i> {% trans 'grocery lists' %}</a></li>
                    <li class="divider"></li>
                    <li><a href="{% url 'accounts.views.logout_page' %}"><i class="glyphicon glyphicon-asterisk"></i> {% trans 'logout' %}</a></li>
