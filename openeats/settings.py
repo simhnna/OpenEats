@@ -124,8 +124,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_PATH, 'locale'),
 )
 
-ROOT_URLCONF = 'urls'
-
 ROOT_URLCONF = 'openeats.urls'
 
 INSTALLED_APPS = (
