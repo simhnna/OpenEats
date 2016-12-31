@@ -14,4 +14,4 @@ def entry(request, slug):
 def index(request):
     """returns a list of news stories"""
     entry_list = Entry.objects.all().order_by('pub_date')
-    return render('news/entry_list.html', {'entry_list': entry_list})
+    return render(request, 'news/entry_list.html', {'entry_list': entry_list})
