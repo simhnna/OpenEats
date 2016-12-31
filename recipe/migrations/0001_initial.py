@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('pub_date', models.DateTimeField(auto_now_add=True)),
-                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipe.Recipe', unique=True, verbose_name='recipe')),
+                ('recipe', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='recipe.Recipe', unique=True, verbose_name='recipe')),
                 ('reported_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='author')),
             ],
             options={

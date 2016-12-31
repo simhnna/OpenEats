@@ -72,7 +72,7 @@ class NoteRecipe(models.Model):
 
 @python_2_unicode_compatible
 class ReportedRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'), unique=True)
+    recipe = models.OneToOneField(Recipe, verbose_name=_('recipe'))
     reported_by = models.ForeignKey(User, verbose_name=_('author'))
     pub_date = models.DateTimeField(auto_now_add=True)
 
