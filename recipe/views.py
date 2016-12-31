@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponse, Http404
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.staticfiles import finders
 from django.views.generic import DetailView
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_str
@@ -241,7 +242,7 @@ def exportPDF(request, slug):
     doc = SimpleDocTemplate(response)
 
     # set the openeats logo
-    logo = settings.STATIC_ROOT + "/" + settings.OELOGO
+    logo = finders.find(settings.OELOGO)
     I = Image(logo)
     I.hAlign = 'LEFT'
     elements.append(I)
