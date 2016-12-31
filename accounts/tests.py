@@ -36,8 +36,8 @@ class accountViewsTestCase(WebTest):
         form['username'] = 'testUser'
         form['password'] = 'password'
         resp = form.submit()
-        self.assertEqual(resp.location, 'http://localhost:80' + reverse('recipe_index'))
         self.assertEqual(resp.status_code, 302)
+        self.assertEqual(resp.location, reverse('recipe_index'))
 
     def test_bad_login(self):
         """make sure an error is thrown when someone can't login"""

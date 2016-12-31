@@ -191,7 +191,7 @@ class listViewsTestCase(TestCase):
 
         resp = self.client.post(reverse('grocery_addrecipe',kwargs={'recipe_slug':recipe.slug}),{'recipe_slug':recipe.slug, 'lists':1, 'recipe_id':recipe.id})
         self.assertEqual(resp.status_code, 302)
-        self.assertEqual(resp['location'], "http://testserver" + reverse('grocery_edit', kwargs={'user':'testUser', 'slug':'test'}))
+        self.assertEqual(resp['location'], reverse('grocery_edit', kwargs={'user':'testUser', 'slug':'test'}))
 
         #test we now have more items
         self.assertEqual(list.items.count(), 14)
