@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^accounts/ajax-signIn/$', login, {'template_name': 'accounts/ajax_signIn.html',}),
     url(r'^accounts/ajax-create/$', register, {'backend': 'registration.backends.default.DefaultBackend','template_name': 'accounts/ajax_create.html',}),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url('^profiles/edit', edit_profile, {'form_class': ProfileForm,}),
+    url(r'^profiles/edit', edit_profile, {'form_class': ProfileForm,}),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^follow/', include('relationships.urls')),
