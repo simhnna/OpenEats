@@ -7,6 +7,7 @@ from django.http import HttpResponse, Http404
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic import DetailView
 from django.utils.translation import ugettext as _
+from django.utils.encoding import smart_str
 from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
 from ingredient.models import Ingredient
 from .forms import RecipeForm,IngItemFormSet, RecipeSendMail
@@ -126,7 +127,7 @@ def recipeRate(request, object_id, score):
     }
     results = {}
     response = AddRatingView()(request, **params)
-    results['message'] = response.content
+    results['message'] = smart_str(response.content)
     r = Recipe.objects.get(pk=object_id)  # get recipe object so we can return the average rating
     avg = r.rating.score / r.rating.votes
     results['avg'] = avg
