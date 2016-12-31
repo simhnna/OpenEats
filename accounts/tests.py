@@ -59,11 +59,11 @@ class accountViewsTestCase(WebTest):
 
         #check the signal on save of a new user created a profile for the user
         profile = self.app.get(reverse('profiles_profile_detail', kwargs={'username':'newUser'}))
-        self.assertTrue(profile.status, '200 OK')
+        self.assertTrue(profile.status_code, 200)
 
         #check a unknown user throws a 404 on the profile page
         profile = self.app.get(reverse('profiles_profile_detail', kwargs={'username':'badUser'}),status=404)
-        self.assertTrue(profile.status, '404 NOT FOUND')
+        self.assertTrue(profile.status_code, 404)
 
         
 
