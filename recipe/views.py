@@ -217,7 +217,7 @@ def exportPDF(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
 
     # Create the HttpResponse object with the appropriate PDF headers.
-    response = HttpResponse(mimetype='application/pdf')
+    response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=' + recipe.slug + '.pdf'
 
     # Our container for 'Flowable' objects
