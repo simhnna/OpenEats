@@ -5,6 +5,24 @@ from django.contrib.auth.models import User
 class accountViewsTestCase(WebTest):
     fixtures = ['test_user_data.json']
     setup_auth = False
+
+    def test_admin_login(self):
+        # sanity check to make sure the data loaded
+        user = User.objects.get(username="admin")
+        self.assertEqual(user.is_staff, True)
+        self.assertTrue(user.is_active)
+        self.assertEqual(user.username, 'admin')
+        self.assertTrue(user.check_password('password'))
+
+        # login to the form
+        url = reverse('auth_login')
+        form = self.app.get(url).forms[1]
+        form['username'] = 'admin'
+        form['password'] = 'password'
+        resp = form.submit()
+        self.assertEqual(resp.status_code, 302)
+        self.assertEqual(resp.location, reverse('recipe_index'))
+
     def test_login(self):
         """used to test the login form"""
 
