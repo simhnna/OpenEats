@@ -78,8 +78,8 @@ class recipeViewsTestCase(WebTest):
 
         #add a vote
         resp = self.app.get(reverse('recipe_rate',kwargs={'object_id':1, 'score':4}), user='testUser')
-        self.assertTrue('Vote recorded.' in resp)
         self.assertEqual(resp.status_code, 200)
+        self.assertTrue(b'Vote recorded.' in resp)
 
     def test_store(self):
         """test a user can store a recipe"""
