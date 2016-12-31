@@ -121,7 +121,7 @@ STATICFILES_FINDERS = (
 )
 
 LOCALE_PATHS = (
-  os.path.join(BASE_PATH, 'locale',)
+    os.path.join(BASE_PATH, 'locale'),
 )
 
 ROOT_URLCONF = 'urls'
