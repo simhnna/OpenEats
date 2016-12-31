@@ -34,18 +34,18 @@ class recipeViewsTestCase(WebTest):
         self.assertEqual(resp.status_code, 200)
         form = resp.forms[1]
         form['title'] = 'my recipe'
-        form['course'] = 1
-        form['cuisine'] = 2
+        form['course'] = '1'
+        form['cuisine'] = '2'
         form['info'] = "this is my recipe"
-        form['cook_time'] = 20
-        form['servings'] = 2
-        form['shared'] = 1  #making the recipe private
+        form['cook_time'] = '20'
+        form['servings'] = '2'
+        form['shared'] = '1'  #making the recipe private
         form['tags'] = 'recipe'
         form['directions'] = "cook till done"
-        form['ingredients-0-quantity'] = 2
+        form['ingredients-0-quantity'] = '2'
         form['ingredients-0-measurement'] = 'cups'
         form['ingredients-0-title'] = 'flour'
-        form['ingredients-1-quantity'] = 1
+        form['ingredients-1-quantity'] = '1'
         form['ingredients-1-measurement'] = 'cup'
         form['ingredients-1-title'] = 'water'
         resp = form.submit().follow()
@@ -162,8 +162,8 @@ class recipeViewsTestCase(WebTest):
         self.assertEqual(resp.status_code, 200)
         self.assertTrue(resp.forms[1])
         form = resp.forms[1]
-        form['servings'] = 10
-        form['ingredients-13-quantity'] = 1
+        form['servings'] = '10'
+        form['ingredients-13-quantity'] = '1'
         form['ingredients-13-measurement'] = 'cup'
         form['ingredients-13-title'] = 'cheddar cheese'
         resp = form.submit().follow()
