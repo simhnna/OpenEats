@@ -9,7 +9,7 @@ from django.forms.models import BaseInlineFormSet
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import EmailMessage, BadHeaderError
 from django.conf import settings
-from django.template import loader, RequestContext
+from django.template import loader
 from django.contrib.sites.models import Site
 from django.db.models import Q
 

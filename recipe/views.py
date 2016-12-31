@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
 from django.http import HttpResponse, Http404

@@ -10,7 +10,7 @@ from django.core.mail import EmailMessage, BadHeaderError
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.template import loader, RequestContext
+from django.template import loader
 from django.http import HttpResponse
 
 
@@ -79,7 +79,7 @@ class RecipeSendMail(forms.Form):
     def get_body(self):
         """get the recipe and return the message body for the email"""
         template_name = 'recipe/recipe_mail_body.html'  # template that contains the email body and also shared by the grocery print view
-        message = loader.render_to_string(template_name, {'recipe': self._get_recipe()}, context_instance=RequestContext(self.request))
+        message = loader.render_to_string(template_name, {'recipe': self._get_recipe()}, request=self.request)
         return message
 
     def get_toMail(self):

@@ -1,7 +1,6 @@
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.template import RequestContext
 from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import ugettext as _
