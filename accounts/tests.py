@@ -55,7 +55,7 @@ class accountViewsTestCase(WebTest):
         form['password1'] = 'password'
         form['password2'] = 'password'
         resp = form.submit().follow()
-        self.assertTrue('Thank you' in resp.body)
+        self.assertTrue(b'Thank you' in resp.body)
 
         #check the signal on save of a new user created a profile for the user
         profile = self.app.get(reverse('profiles_profile_detail', kwargs={'username':'newUser'}))
