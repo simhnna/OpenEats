@@ -160,6 +160,7 @@ INSTALLED_APPS = (
     'accounts',
     'news',
     'list',
+    'openeats',
 )
 
 
