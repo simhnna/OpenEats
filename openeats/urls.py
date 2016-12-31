@@ -31,7 +31,7 @@ urlpatterns = [
     url('^profiles/edit', edit_profile, {'form_class': ProfileForm,}),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^rosetta/', include('rosetta.urls')),
-#    url(r'^follow/', include('relationships.urls')),
+    url(r'^follow/', include('relationships.urls')),
     url(r'^friends/', include('friends.urls')),
     url(r'^feed/', include('feed.urls')),
     url(r'^groups/', include('recipe_groups.urls')),
