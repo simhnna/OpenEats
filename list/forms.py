@@ -95,12 +95,12 @@ class GrocerySendMail(forms.Form):
         if request.user.is_authenticated():
             self.fields['to_email'].initial= request.user.email
 
-    to_email = forms.EmailField(widget=forms.TextInput(), label=_('email address'))
-    gid = forms.CharField(widget=forms.HiddenInput())
+        self.to_email = forms.EmailField(widget=forms.TextInput(), label=_('email address'))
+        self.gid = forms.CharField(widget=forms.HiddenInput())
 
-    from_email = settings.DEFAULT_FROM_EMAIL
-    from_site = Site.objects.get_current()
-    subject = _('Grocery list from ' + str(from_site))
+        self.from_email = settings.DEFAULT_FROM_EMAIL
+        self.from_site = Site.objects.get_current()
+        self.subject = _('Grocery list from ' + str(from_site))
 
     def get_body(self):
         """get the grocery list and return the message body for the email"""

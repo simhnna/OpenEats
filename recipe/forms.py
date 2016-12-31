@@ -63,9 +63,9 @@ class RecipeSendMail(forms.Form):
         super(RecipeSendMail, self).__init__(data=data, files=files, *args, **kwargs)
         self.request = request
 
-    to_email = forms.EmailField(widget=forms.TextInput(), label=_('email address'))
-    id = forms.CharField(widget=forms.HiddenInput())
-    from_site = Site.objects.get_current()
+        self.to_email = forms.EmailField(widget=forms.TextInput(), label=_('email address'))
+        self.id = forms.CharField(widget=forms.HiddenInput())
+        self.from_site = Site.objects.get_current()
 
     def _get_recipe(self):
         if self.is_valid():
