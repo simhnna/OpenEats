@@ -2,7 +2,6 @@
 import os
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 SERVE_MEDIA = True
 
 ADMINS = (
@@ -101,6 +100,7 @@ TEMPLATES = [
                 "openeats.context_processors.oelogo",
                 "openeats.context_processors.oetitle",
             ],
+            'debug': True,
         },
     },
 ]
