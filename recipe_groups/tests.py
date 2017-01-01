@@ -25,7 +25,7 @@ class CourseTest(TestCase):
         response = self.client.get(reverse('course_list'))
         self.assertEqual(response.status_code, 200) #got the the page
         self.assertTemplateUsed(response, 'recipe_groups/course_list.html') #check the right template was used
-        courses = response.context['course_list']
+        courses = response.context['object_list']
         self.assertEqual(len(courses), 6, 'There should be 5 courses on the page but we found %s' % len(courses))
 
     def tearDown(self):
