@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('recipe', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -22,6 +23,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('aisle', models.CharField(max_length=100, verbose_name='aisle')),
+                ('author', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='user')),
             ],
             options={
                 'ordering': ['aisle'],
@@ -32,6 +34,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('item', models.CharField(max_length=550, verbose_name='item')),
+                ('aisle', models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, to='list.GroceryAisle')),
             ],
             options={
                 'ordering': ['aisle', 'item'],
@@ -44,6 +47,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=250, verbose_name='grocery list title')),
                 ('slug', django_extensions.db.fields.AutoSlugField(blank=True, editable=False, populate_from='title', verbose_name='slug')),
                 ('pub_date', models.DateTimeField(auto_now_add=True)),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='user')),
             ],
             options={
                 'ordering': ['pub_date'],
@@ -54,6 +58,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('list', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='list.GroceryList', verbose_name='grocery list')),
+                ('recipe', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipe.Recipe', verbose_name='recipe')),
             ],
         ),
         migrations.CreateModel(
@@ -67,5 +72,10 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name_plural': 'shared lists',
             },
+        ),
+        migrations.AddField(
+            model_name='groceryitem',
+            name='list',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='list.GroceryList', verbose_name='grocery list'),
         ),
     ]
