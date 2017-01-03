@@ -49,7 +49,7 @@ class accountViewsTestCase(WebTest):
 
     def test_create_user(self):
         """test that a user can be created"""
-        form = self.app.get(reverse('registration_register')).forms[1]
+        form = self.app.get(reverse('registration_register')).forms[0]
         form['username'] = 'newUser'
         form['email'] = 'newUser@yahoo.com'
         form['password1'] = 'password'
