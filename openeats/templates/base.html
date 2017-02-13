@@ -11,9 +11,9 @@
     {% block feeds %}
         <link href="/feed/recent/" rel="alternate" type="application/rss+xml"
               title="{{ OETITLE }}{% blocktrans %}Top Recipe Feed{% endblocktrans %}"/>{% endblock %}
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui/jquery-ui.js"></script>
+    <link href="{{ STATIC_URL }}jquery-ui-themes/redmond/jquery-ui.css" rel="stylesheet"/>
     {% block jscript %}{% endblock %}
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-flatly-theme.css"/>
