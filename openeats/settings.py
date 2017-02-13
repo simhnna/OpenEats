@@ -139,7 +139,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.flatpages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
+#    'debug_toolbar',
     'taggit', 
     'taggit_templatetags',
     'navbar',
