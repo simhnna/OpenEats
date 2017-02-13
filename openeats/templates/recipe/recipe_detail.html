@@ -254,11 +254,13 @@
       </div>
    {% endif %}
 
-    <div id="recipe-comments">
-            <h2>{% trans 'comments' %}</h2>
-            {% load disqus_tags %}
-            {% disqus_dev %}
-            {% disqus_show_comments %}
-        </div>
+   {% comment %}
+   <div id="recipe-comments">
+     <h2>{% trans 'comments' %}</h2>
+     {% load disqus_tags %}
+     {% disqus_dev %}
+     {% disqus_show_comments %}
+   </div>
+   {% endcomment %}
 {% endblock %}
 

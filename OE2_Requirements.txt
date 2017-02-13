@@ -2,7 +2,6 @@
 
 django==1.5.12
 django-debug-toolbar==1.0
-django-disqus==0.4.1
 django-imagekit==3.2.4
 django-reversion==1.5.1
 django-taggit==0.10
@@ -25,6 +24,7 @@ django-relationships==0.3.3
 django-tastypie==0.10.0
 lxml==3.2.3
 https://github.com/qgriffith/django-ratings/zipball/stable
+#django-disqus==0.4.1
 git+git://github.com/detrout/django-navbar.git@903d13fe7694ec71dfc50243c7d33636d69d25da#egg=django-navbar
 -e git+https://github.com/macropin/django-registration@9f56b7ccb297c83ecb3ef01e9859fdd65f54b275#egg=django-registration
 -e git+https://github.com/detrout/django-profiles2.git#egg=django-profiles2

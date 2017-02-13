@@ -143,7 +143,7 @@ INSTALLED_APPS = (
     'taggit', 
     'taggit_templatetags',
     'navbar',
-    'disqus',
+#    'disqus',
     'registration',
     'rosetta',
     'profiles',
