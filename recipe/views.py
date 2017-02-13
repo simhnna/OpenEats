@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_str
 from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
 from ingredient.models import Ingredient
-from .forms import RecipeForm,IngItemFormSet, RecipeSendMail
+from .forms import RecipeForm, IngItemFormSet, RecipeSendMail
 from djangoratings.views import AddRatingView
 import json
 from django.conf import settings
