@@ -31,8 +31,6 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ['shared', 'author', 'course', 'cuisine']
     search_fields = ['author__username', 'title',]
     radio_fields = {"shared": admin.HORIZONTAL}
-    class Media:
-        js = [settings.STATIC_URL+'grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js', settings.STATIC_URL+'js/tinymce_setup.js', ]
 
 
 class StoredRecipeAdmin(admin.ModelAdmin):
@@ -62,11 +60,4 @@ class ReportedRecipeAdmin(admin.ModelAdmin):
     list_filter = ['reported_by']
 
 
-class FlatPageAdmin(FlatPageAdmin):
-    class Media:
-        js = ['/site-media/admin/tinymce/jscripts/tiny_mce/tiny_mce.js', '/site-media/js/tinymce_setup.js', ]
-
-
-admin.site.unregister(FlatPage)
-admin.site.register(FlatPage, FlatPageAdmin)
 admin.site.register(Recipe, RecipeAdmin)
