@@ -9,7 +9,7 @@ from openeats.models.recipe_groups import Course, Cuisine
 from openeats.models.recipes import Recipe
 from django.contrib.auth.decorators import login_required
 from openeats.forms.recipe_groups import CoursePopForm, CuisinePopForm
-from helpers.form_helper import handlePopAdd
+from openeats.helpers.form_helper import handlePopAdd
 
 
 def course_recipes(request, slug):
