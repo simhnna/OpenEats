@@ -4,6 +4,8 @@ register = template.Library()
 @register.filter(name='convertUnit')
 def convert_unit(value):
     """converts ingredient measurment to meal master unit"""
+    if not value:
+        return ''
 
     convert = {'gram':'g',
               'fluid ounce':'fl',

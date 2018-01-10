@@ -1,8 +1,8 @@
-from django.core.management.base import NoArgsCommand, CommandError
+from django.core.management.base import BaseCommand, CommandError
 from recipe.models import Recipe
-from django.template import Context, loader
+from django.template import loader
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = 'Outputs OpenEat recipes in the meal master format'
 
     def handle(self, *args, **options):
@@ -11,7 +11,6 @@ class Command(NoArgsCommand):
             recipes = Recipe.objects.all()
         except IndexError:
             raise CommandError("Could not get a list of recipes check your database")
-        
+
         template = loader.get_template('recipe/mealmaster_export.txt')
-        context = Context({'queryset':recipes})
-        print template.render(context)
+        print(template.render({'queryset':recipes}))
