@@ -15,7 +15,6 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^feed/', include('feed.urls')),
     url(r'^groups/', include('recipe_groups.urls')),
     url(r'^recipe/', include('recipe.urls')),
     url(r'^ingredient/', include('ingredient.urls')),
@@ -31,8 +30,4 @@ if settings.SERVE_MEDIA:
         url(r'^site-media/(?P<path>.*)$', serve,
             {'document_root': settings.MEDIA_ROOT}),
         ]
-#if settings.DEBUG:
-#    import debug_toolbar
-#    urlpatterns += [
-#        url(r'^__debug__/', include(debug_toolbar.urls)),
-#    ]
+
