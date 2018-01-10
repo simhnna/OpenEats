@@ -171,7 +171,3 @@ def exportPDF(request, slug):
     doc.build(elements)
     return response
 
-
-class CookList(DetailView):
-    model = Recipe
-    template_name = "recipe/recipe_cook.html"
