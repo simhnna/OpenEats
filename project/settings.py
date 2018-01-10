@@ -95,8 +95,6 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 "django.template.context_processors.request",
                 "django.contrib.messages.context_processors.messages",
-                "openeats.context_processors.oelogo",
-                "openeats.context_processors.oetitle",
             ],
             'debug': True,
         },
@@ -123,7 +121,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_PATH, 'locale'),
 )
 
-ROOT_URLCONF = 'openeats.urls'
+ROOT_URLCONF = 'project.urls'
 
 INSTALLED_APPS = (
     #'grappelli.dashboard',
@@ -156,7 +154,6 @@ INSTALLED_APPS = (
 
 #OpenEats2 Settings
 OELOGO = 'images/oelogo.png'
-OETITLE = 'OpenEats2 Dev'
 
 #Email Server Settings
 DEFAULT_FROM_EMAIL = ''

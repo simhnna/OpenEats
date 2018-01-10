@@ -7,10 +7,7 @@
         <meta http-equiv="keywords" content="Recipes, OpenEats2, OpenEats, Django, Grocery List, Grocery Lists, Share Recipes, rated recipes"/>
     {% endblock %}
     <meta name="description" content="Amazing Recipes and beautiful food photography. Created as well as rated by you and fellow foodies."/>
-    <title>{% block title %}{{ OETITLE }}{% endblock %}</title>
-    {% block feeds %}
-        <link href="/feed/recent/" rel="alternate" type="application/rss+xml"
-              title="{{ OETITLE }}{% blocktrans %}Top Recipe Feed{% endblocktrans %}"/>{% endblock %}
+    <title>{% block title %}OpenEats{% endblock %}</title>
     <script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui/jquery-ui.js"></script>
     {% block jscript %}{% endblock %}
@@ -33,7 +30,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
          </button>
-         <a class="navbar-brand" href="#">{{ OETITLE }}</a>
+         <a class="navbar-brand" href="#">OpenEats</a>
        </div>
        <div class="navbar-collapse collapse">
            <ul class="nav navbar-nav">
