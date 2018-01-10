@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -33,4 +32,3 @@ class Cuisine(models.Model):
 
     def recipe_count(self):
         return self.recipe_set.filter(shared=0).count()
-

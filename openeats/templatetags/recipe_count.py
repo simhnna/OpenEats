@@ -13,4 +13,3 @@ def recipeCount(value, arg):
         return user.recipe_set.filter(shared=0).count()
     else:
         return user.recipe_set.filter(shared=1).count()
-

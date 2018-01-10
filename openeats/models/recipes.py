@@ -14,10 +14,10 @@ class Recipe(models.Model):
     )
 
     title = models.CharField(_("Recipe Title"), max_length=250)
-    author = models.ForeignKey(User, verbose_name=_('user'))
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('user'))
     photo = models.ImageField(_('photo'), blank=True, upload_to="upload/recipe_photos")
-    course = models.ForeignKey(Course, verbose_name=_('course'))
-    cuisine = models.ForeignKey(Cuisine, verbose_name=_('cuisine'))
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name=_('course'))
+    cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE, verbose_name=_('cuisine'))
     info = models.TextField(_('info'), help_text="enter information about the recipe")
     cook_time = models.IntegerField(_('cook time'), help_text="enter time in minutes")
     servings = models.IntegerField(_('servings'), help_text="enter total number of servings")
@@ -36,4 +36,3 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return "/recipe/%s/" % self.pk
-

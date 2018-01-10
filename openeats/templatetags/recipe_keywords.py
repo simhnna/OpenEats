@@ -15,4 +15,3 @@ def recipe_keywords(recipe_id, tag_count):
         keyword_list.append(tag.name)
     keyword_string = ','.join(keyword_list[0:tag_count])
     return keyword_string
-

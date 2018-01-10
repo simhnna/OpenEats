@@ -1,6 +1,6 @@
 from unittest import expectedFailure
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from django_webtest import WebTest
 

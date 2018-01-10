@@ -20,4 +20,3 @@ def browse_tag(context):
         if cuisine.recipe_count() > 0:
             cuisine_list.append(cuisine)
     return {'course_list': course_list, 'cuisine_list': cuisine_list, "request": context['request']}
-

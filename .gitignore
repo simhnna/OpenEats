@@ -10,3 +10,4 @@ site-media/
 *~
 env
 db.sqlite3
+.tox

@@ -32,7 +32,6 @@ class RecipeAdmin(admin.ModelAdmin):
     radio_fields = {"shared": admin.HORIZONTAL}
 
 
-
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     ordering = ['title']
