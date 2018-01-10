@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% load front_page %}
 
 {% block content %}
-   {% frontpage_news %}
 
     <div class="row">
      {% for recipe in new_recipes|slice:"0:3" %}
