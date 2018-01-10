@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from django.contrib import admin
-from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
+from .models import Recipe, NoteRecipe
 from imagekit.admin import AdminThumbnail
 from ingredient.models import Ingredient
 from .forms import IngItemFormSet
@@ -75,6 +75,4 @@ class FlatPageAdmin(FlatPageAdmin):
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(StoredRecipe, StoredRecipeAdmin)
 admin.site.register(NoteRecipe, NoteRecipeAdmin)
-admin.site.register(ReportedRecipe, ReportedRecipeAdmin)

@@ -46,15 +46,6 @@ class Recipe(models.Model):
 
 
 @python_2_unicode_compatible
-class StoredRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
-    user = models.ForeignKey(User, verbose_name=_('user'))
-
-    def __str__(self):
-        return self.recipe.title
-
-
-@python_2_unicode_compatible
 class NoteRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
     author = models.ForeignKey(User, verbose_name=_('author'))
@@ -66,15 +57,3 @@ class NoteRecipe(models.Model):
     def __str__(self):
         return "%s note for %s" % (self.author, self.recipe)
 
-
-@python_2_unicode_compatible
-class ReportedRecipe(models.Model):
-    recipe = models.OneToOneField(Recipe, verbose_name=_('recipe'))
-    reported_by = models.ForeignKey(User, verbose_name=_('author'))
-    pub_date = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['pub_date', 'recipe']
-
-    def __str__(self):
-        return self.recipe.title

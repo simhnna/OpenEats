@@ -9,7 +9,7 @@ from django.contrib.staticfiles import finders
 from django.views.generic import DetailView
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_str
-from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
+from .models import Recipe, NoteRecipe
 from ingredient.models import Ingredient
 from .forms import RecipeForm, IngItemFormSet, RecipeSendMail
 import json
@@ -47,7 +47,7 @@ def recipeShow(request, slug):
         note = request.user.noterecipe_set.filter(recipe=recipe, author=request.user)
     else:
         note = None
-    
+
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:  # check if the recipe is a private recipe if so through a 404 error
         output = _("Recipe %s is marked Private") % recipe.slug
         raise Http404(output)
@@ -62,7 +62,7 @@ def recipePrint(request, slug):
         note = request.user.noterecipe_set.filter(recipe=recipe, author=request.user)
     else:
         note = None
-     
+
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:  # check if the recipe is a private recipe if so through a 404 error
         output = _("Recipe %s is marked Private") % recipe.slug
         raise Http404(output)
@@ -98,7 +98,7 @@ def recipe(request, user=None, slug=None):
 
         if recipe_inst.id:   # if we are editing an existing recipe disable the title field so it can't be changed
             form.fields['title'].widget.attrs['readonly'] = True
-        
+
         formset = IngFormSet(instance=recipe_inst)
     return render(request, 'recipe/recipe_form.html', {'form': form, 'formset': formset, })
 
@@ -111,51 +111,9 @@ def recipeUser(request, shared, user):
         recipe_list = Recipe.objects.filter(author__username=user, shared=Recipe.SHARE_SHARED).order_by('-pub_date')
     else:
         recipe_list = Recipe.objects.filter(author__username=user, shared=Recipe.PRIVATE_SHARED).order_by('-pub_date')
-       
+
     return render(request, 'recipe/recipe_userlist.html', {'recipe_list': recipe_list, 'user': user, 'shared': shared})
 
-
-
-@login_required
-def recipeStore(request, object_id):
-    """Take the recipe id and the user id passed via the url check that the recipe is not
-       already stored for that user then store it if it is
-    """
-    stored = StoredRecipe.objects.filter(recipe=object_id, user=request.user.id)
-    if stored:
-        output = _("Recipe already in your favorites!")
-        return HttpResponse(output)
-    else:  # save the recipe
-        r = get_object_or_404(Recipe, pk=object_id)
-        new_store = StoredRecipe(recipe=r, user=request.user)
-        new_store.save()
-        output = _("Recipe added to your favorites!")
-        return HttpResponse(output)
-        
-
-@login_required
-def recipeUnStore(request):
-    """Take the recipe id via the url check that the recipe is not already
-       stored for that user then remove it if it is
-    """
-    if request.method == 'POST':
-        if request.POST['recipe_id']:
-            try:
-                stored_recipe = StoredRecipe.objects.get(recipe=request.POST['recipe_id'], user=request.user.id)
-            except StoredRecipe.DoesNotExist:
-                raise Http404
-            stored_recipe.delete()
-            return redirect('/recipe/ajax-favrecipe/')
-    
-
-@login_required
-def recipeUserFavs(request):
-    """returns a list of a users favorite recipes"""
-    stored_list = StoredRecipe.objects.filter(user=request.user.id)
-    recipe_list = []
-    for stored in stored_list:
-        recipe_list.append(stored.recipe)
-    return render(request, 'recipe/recipe_userfav.html', {'recipe_list': recipe_list})
 
 
 @login_required
@@ -163,7 +121,7 @@ def recipeNote(request):
     """This is called by the jquery inline edit on the recipe detail template to allow users to add notes to recipes"""
 
     user = request.user
-    
+
     if request.POST['recipe']:
         try:
             recipe = Recipe.objects.get(pk=request.POST['recipe'])
@@ -251,36 +209,6 @@ def exportPDF(request, slug):
     # build the pdf and return it
     doc.build(elements)
     return response
-
-
-@login_required
-def recipeReport(request, slug):
-    """Take the recipe id and the user id passed via the url check that the recipe is not
-       already reported if it isn't it will be reported
-    """
-    recipe = get_object_or_404(Recipe, slug=slug)
-    reported = ReportedRecipe.objects.filter(recipe=recipe.pk)
-    if reported:
-        output = _("Recipe has already been reported!")
-        return HttpResponse(output)
-    else:  # report the recipe
-        new_reported = ReportedRecipe(recipe=recipe, reported_by=request.user)
-        new_reported.save()
-        output = _("Recipe reported to the moderators!")
-        return HttpResponse(output)
-
-
-@login_required
-def recipeMail(request, id):
-    """this view creates a form used to send a recipe to someone via email"""
-    if request.method == 'POST':
-        form = RecipeSendMail(data=request.POST, request=request)  # passing the request object so that in the form I can get the request post dict to save the form
-        if form.is_valid():
-            form.save(fail_silently=False)
-            return HttpResponse("recipe sent to " + request.POST['to_email'])
-    else:
-        form = RecipeSendMail(request=request)
-    return render(request, 'recipe/recipe_email.html', {'form': form, 'id': id})
 
 
 class CookList(DetailView):

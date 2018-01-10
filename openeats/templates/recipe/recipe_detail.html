@@ -3,7 +3,6 @@
 
 {% load i18n %}
 {% load recipe_keywords %}
-{% load recipe_links %}
 
 {%block title %}{{ block.super }}- {{ recipe }} {% endblock %}
 {% block keywords %}<meta name="keywords" content="{% recipe_keywords recipe.id 10 %}"/>{% endblock %}
@@ -57,7 +56,6 @@
         <a class="btn btn-primary btn-sm" href="{% url 'recipe_edit' user=request.user.username slug=recipe.slug %}">{% trans 'edit' %}</a>
         {% endif %}
 
-        {% fav_link request.user recipe.id %}
        <a class="btn btn-primary btn-sm" href="{% url 'recipe_export' slug=recipe.slug %}">pdf</a>
     </div>
 
