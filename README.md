@@ -1,5 +1,8 @@
 #OpenEats Project
 
+[![Build Status](https://travis-ci.org/simhnna/OpenEats.svg?branch=master)](https://travis-ci.org/simhnna/OpenEats)
+[![codecov](https://codecov.io/gh/simhnna/OpenEats/branch/master/graph/badge.svg)](https://codecov.io/gh/simhnna/OpenEats)
+
 OpenEats is a recipe management site that allows users to create, share, and store recipes.  OpenEats was created using django, a python web framework
 and several django plugins.  Some of the features of OpenEats are;
 
