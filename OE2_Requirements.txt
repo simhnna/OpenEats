@@ -1,30 +1,21 @@
 #Third party package requirements for OpenEats 2
 
-django==1.5.12
+django==1.11
 django-imagekit==3.2.4
 django-reversion==1.5.1
 django-taggit==0.10
-akismet==0.2.0
-south==0.8.2
 feedparser==5.1.3
 html5lib==0.95
 pillow==2.7.0
 whoosh==2.5.2
 django-pagination==1.0.7
 django-haystack==2.3.1
-django-rosetta==0.7.2
 django-taggit-templatetags==0.4.6dev
 django-extensions==1.2.0
 webtest==2.0.7
 django-webtest==1.7.5
-reportlab==2.5
-django-grappelli==2.4.5
-django-relationships==0.3.3
+reportlab
 django-tastypie==0.10.0
-lxml==3.2.3
+#lxml==3.2.3
 https://github.com/qgriffith/django-ratings/zipball/stable
-#django-debug-toolbar==1.0
-#django-disqus==0.4.1
 git+git://github.com/detrout/django-navbar.git@903d13fe7694ec71dfc50243c7d33636d69d25da#egg=django-navbar
--e git+https://github.com/macropin/django-registration@9f56b7ccb297c83ecb3ef01e9859fdd65f54b275#egg=django-registration
--e git+https://github.com/detrout/django-profiles2.git#egg=django-profiles2

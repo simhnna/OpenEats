@@ -1,6 +1,6 @@
 from django.conf.urls import *
-from helpers.recipe_views import RecentRecipeView, TopRecipeView
-from recipe.views import CookList, recipe, recipeMail, recipeNote, recipePrint, recipeRate, recipeReport, recipeUnStore, recipeStore, recipeUser, recipeUserFavs, recipeShow, exportPDF, index
+from helpers.recipe_views import RecentRecipeView
+from recipe.views import CookList, recipe, recipeMail, recipeNote, recipePrint, recipeReport, recipeUnStore, recipeStore, recipeUser, recipeUserFavs, recipeShow, exportPDF, index
 
 
 urlpatterns = [
@@ -14,10 +14,8 @@ urlpatterns = [
     url(r'^unstore/$', recipeUnStore, name='recipe_unstore'),
     url(r'^ajaxnote/$', recipeNote),
     url(r'^ajaxulist/(?P<shared>[-\w]+)/(?P<user>[-\w]+)/$', recipeUser),
-    url(r'^ajax-raterecipe/(?P<object_id>\d+)/(?P<score>\d+)/$', recipeRate, name='recipe_rate'),
     url(r'^ajax-favrecipe/$', recipeUserFavs),
     url(r'^recent/$', RecentRecipeView.as_view(), name='recipe_recent'),
-    url(r'^top/$', TopRecipeView.as_view(), name='recipe_top'),
     url(r'^(?P<slug>[-\w]+)/$', recipeShow, name='recipe_show'),
     url(r'^export/(?P<slug>[-\w]+)/$', exportPDF, name='recipe_export'),
     url(r'^$', index, name='recipe_index'),

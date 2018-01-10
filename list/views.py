@@ -174,7 +174,6 @@ def groceryShareList(request, user, slug):
             return redirect('grocery_show', user=request.user, slug=slug)
     else:
         form = GroceryShareTo()
-        form.fields['shared_to'].queryset = request.user.relationships.followers()  # only allow people who are following a user to be allowed to have list shared to them
     return render(request, 'list/grocery_share.html', {'form': form, 'list': list})
 
 

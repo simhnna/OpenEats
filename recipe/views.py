@@ -12,7 +12,6 @@ from django.utils.encoding import smart_str
 from .models import Recipe, StoredRecipe, NoteRecipe, ReportedRecipe
 from ingredient.models import Ingredient
 from .forms import RecipeForm, IngItemFormSet, RecipeSendMail
-from djangoratings.views import AddRatingView
 import json
 from django.conf import settings
 from django.db.models import F
@@ -115,26 +114,6 @@ def recipeUser(request, shared, user):
        
     return render(request, 'recipe/recipe_userlist.html', {'recipe_list': recipe_list, 'user': user, 'shared': shared})
 
-
-@login_required
-def recipeRate(request, object_id, score):
-    """ Used for users to rate recipes """
-    recipe_type = ContentType.objects.get(app_label="recipe", model="recipe")
-    params = {
-        'content_type_id': recipe_type.id,  # this is the content type id of the recipe models per django.contrib.contentetype
-        'object_id': object_id,
-        'field_name': 'rating',  # this should match the field name defined in your model
-        'score': score,
-    }
-    results = {}
-    response = AddRatingView()(request, **params)
-    results['message'] = smart_str(response.content)
-    r = Recipe.objects.get(pk=object_id)  # get recipe object so we can return the average rating
-    avg = r.rating.score / r.rating.votes
-    results['avg'] = avg
-    results['votes'] = r.rating.votes
-    json_result = json.dumps(results)
-    return HttpResponse(json_result, content_type="application/json")
 
 
 @login_required

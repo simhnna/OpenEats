@@ -1,6 +1,8 @@
 # Django settings for openeats project.
 import os
 
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+
 DEBUG = True
 SERVE_MEDIA = True
 
@@ -12,8 +14,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': os.path.join(BASE_PATH, 'db.sqlite3'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -29,7 +31,7 @@ DATABASES = {
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -49,7 +51,6 @@ LANGUAGES = (
 
 SITE_ID = 1
 
-BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 
 CACHE_BACKEND = "file://"+os.path.join(BASE_PATH, 'cache')
 
@@ -129,8 +130,8 @@ LOCALE_PATHS = (
 ROOT_URLCONF = 'openeats.urls'
 
 INSTALLED_APPS = (
-    'grappelli.dashboard',
-    'grappelli',
+    #'grappelli.dashboard',
+    #'grappelli',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -144,15 +145,14 @@ INSTALLED_APPS = (
     'taggit_templatetags',
     'navbar',
 #    'disqus',
-    'registration',
-    'rosetta',
-    'profiles',
-    'imagekit',
-    'djangoratings',
-    'haystack',
+    #'registration',
+    #'profiles',
+    #'imagekit',
+    #'djangoratings',
+    #'haystack',
     'pagination',
     'django_extensions',
-    'relationships',
+    #'relationships',
     'tastypie',
     'recipe',
     'recipe_groups',
@@ -167,15 +167,6 @@ INSTALLED_APPS = (
 #OpenEats2 Settings
 OELOGO = 'images/oelogo.png'
 OETITLE = 'OpenEats2 Dev'
-
-
-INTERNAL_IPS = ('127.0.0.1',)
-
-### DEBUG-TOOLBAR SETTINGS
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
-DEBUG_TOOLBAR_CONFIG = {
-'INTERCEPT_REDIRECTS': False,
-}
 
 #Email Server Settings
 DEFAULT_FROM_EMAIL = ''

@@ -8,3 +8,5 @@ search_index/
 .idea/
 site-media/
 *~
+env
+db.sqlite3
