@@ -1,5 +1,5 @@
 from django import template
-from recipe_groups.models import Course, Cuisine
+from openeats.models.recipe_groups import Course, Cuisine
 register = template.Library()
 
 @register.inclusion_tag('sidebar/browse.html', takes_context=True)  # get the request context so the sidebar templates have access to the session data

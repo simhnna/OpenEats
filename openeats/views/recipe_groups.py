@@ -5,10 +5,10 @@ from django.template import RequestContext
 from django.views.generic import ListView
 from django.views.generic.edit import  CreateView, UpdateView
 from django.core.urlresolvers import reverse_lazy
-from .models import Course, Cuisine
-from recipe.models import Recipe
+from openeats.models.recipe_groups import Course, Cuisine
+from openeats.models.recipes import Recipe
 from django.contrib.auth.decorators import login_required
-from .forms import CoursePopForm, CuisinePopForm
+from openeats.forms.recipe_groups import CoursePopForm, CuisinePopForm
 from helpers.form_helper import handlePopAdd
 
 
@@ -16,7 +16,7 @@ def course_recipes(request, slug):
     """Rectrives the recipe objects in a list that belong to the course passed to the method"""
     course_object = get_object_or_404(Course, slug=slug)
     recipe_list = course_object.recipe_set.filter(shared=Recipe.SHARE_SHARED)
-    
+
     return render(request, 'recipe_groups/recipe_list.html', {'recipe_list': recipe_list, 'category': course_object.title})
 
 
@@ -24,7 +24,7 @@ def cuisine_recipes(request, slug):
     """Retrives the recipe objects in a list that belong to the cuisine passed to the method"""
     cuisine_object = get_object_or_404(Cuisine, slug=slug)
     recipe_list = cuisine_object.recipe_set.filter(shared=Recipe.SHARE_SHARED)
-       
+
     return render(request, 'recipe_groups/recipe_list.html', {'recipe_list': recipe_list, 'category': cuisine_object.title})
 
 

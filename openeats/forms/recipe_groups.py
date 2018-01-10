@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from django.forms import ModelForm
-from .models import Course, Cuisine
+from openeats.models.recipe_groups import Course, Cuisine
 
 
 class CoursePopForm(ModelForm):

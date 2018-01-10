@@ -1,9 +1,10 @@
+
 from __future__ import absolute_import
 from django.contrib import admin
-from .models import Recipe
+from openeats.models.recipes import Recipe
 from imagekit.admin import AdminThumbnail
-from ingredient.models import Ingredient
-from .forms import IngItemFormSet
+from openeats.models.ingredients import Ingredient
+from openeats.forms.recipes import IngItemFormSet
 from django.shortcuts import render_to_response
 from django.contrib.flatpages.models import FlatPage
 from django.contrib.flatpages.admin import FlatPageAdmin
@@ -61,3 +62,24 @@ class ReportedRecipeAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Recipe, RecipeAdmin)
+
+
+
+
+from openeats.models.recipe_groups import Course, Cuisine
+
+
+class CourseAdmin(admin.ModelAdmin):
+    ordering = ['title']
+    list_display = ['title', 'author']
+    list_filter = ['author']
+
+
+class CuisineAdmin(admin.ModelAdmin):
+    ordering = ['title']
+    list_display = ['title', 'author']
+    list_filter = ['author']
+
+
+admin.site.register(Course, CourseAdmin)
+admin.site.register(Cuisine, CuisineAdmin)

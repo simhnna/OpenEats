@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from recipe_groups.models import Course, Cuisine
+from openeats.models.recipe_groups import Course, Cuisine
 from django_extensions.db.fields import AutoSlugField
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible

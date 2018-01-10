@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+from django.views.generic import ListView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
@@ -9,9 +10,9 @@ from django.contrib.staticfiles import finders
 from django.views.generic import DetailView
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_str
-from .models import Recipe
-from ingredient.models import Ingredient
-from .forms import RecipeForm, IngItemFormSet
+from openeats.models.recipes import Recipe
+from openeats.models.ingredients import Ingredient
+from openeats.forms.recipes import RecipeForm, IngItemFormSet
 import json
 from django.conf import settings
 from django.db.models import F
@@ -169,3 +170,14 @@ def exportPDF(request, slug):
     doc.build(elements)
     return response
 
+
+class RecentRecipeView(ListView):
+    context_object_name = "recipe_list"
+    queryset=Recipe.objects.filter(shared=Recipe.SHARE_SHARED).order_by('-pub_date', 'title')[:20]
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(RecentRecipeView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['title'] = 'Recent Recipes'
+        return context

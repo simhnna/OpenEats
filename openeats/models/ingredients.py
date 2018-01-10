@@ -1,5 +1,5 @@
 from django.db import models
-from recipe.models import Recipe
+from openeats.models.recipes import Recipe
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 
