@@ -1,0 +1,8 @@
+[run]
+source = openeats
+omit =
+  openeats/migrations/*.py
+  openeats/tests/*.py
+
+[html]
+directory = coverage
