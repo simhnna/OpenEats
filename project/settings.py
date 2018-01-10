@@ -132,7 +132,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
-    'django.contrib.flatpages',
     'django.contrib.staticfiles',
     #'taggit',
     #'taggit_templatetags',

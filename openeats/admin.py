@@ -6,8 +6,6 @@ from imagekit.admin import AdminThumbnail
 from openeats.models.ingredients import Ingredient
 from openeats.forms.recipes import IngItemFormSet
 from django.shortcuts import render_to_response
-from django.contrib.flatpages.models import FlatPage
-from django.contrib.flatpages.admin import FlatPageAdmin
 from django.conf import settings
 
 
