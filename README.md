@@ -1,4 +1,4 @@
-#OpenEats Project
+# OpenEats Project
 
 [![Build Status](https://travis-ci.org/simhnna/OpenEats.svg?branch=master)](https://travis-ci.org/simhnna/OpenEats)
 [![codecov](https://codecov.io/gh/simhnna/OpenEats/branch/master/graph/badge.svg)](https://codecov.io/gh/simhnna/OpenEats)
