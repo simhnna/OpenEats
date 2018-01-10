@@ -65,15 +65,13 @@ USE_L10N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.join(BASE_PATH, 'site-media')
-STATICFILES_DIRS = [
-    os.path.join(BASE_PATH, 'static-files')
-]
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/site-media/'
-STATIC_URL = '/static-files/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'tk1ig_pa_p9^muz4vw4%#q@0no$=ce1*b$#s343jouyq9lj)k33j('
