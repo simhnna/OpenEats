@@ -27,8 +27,8 @@ def index(request):
     return render(request, 'recipe/index.html', {'new_recipes': recipe_list})
 
 
-def recipeShow(request, slug):
-    recipe = get_object_or_404(Recipe, slug=slug)
+def recipeShow(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
 
     # setting the four previously viewed recipes in the user session
     # so they can be easily accessed on the sidebar
@@ -44,29 +44,29 @@ def recipeShow(request, slug):
 
     # check if the recipe is a private recipe if so through a 404 error
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:
-        raise Http404(_("Recipe %s is marked Private") % recipe.slug)
+        raise Http404(_("Recipe %s is marked Private") % recipe.title)
     else:
         return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
 
 
-def recipePrint(request, slug):
-    recipe = get_object_or_404(Recipe, slug=slug)
+def recipePrint(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
 
     # check if the recipe is a private recipe if so through a 404 error
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:
-        raise Http404(_('Recipe %s is marked Private') % recipe.slug)
+        raise Http404(_('Recipe %s is marked Private') % recipe.title)
     else:
         return render(request, 'recipe/recipe_print.html', {'recipe': recipe})
 
 
 @login_required
-def recipe(request, user=None, slug=None):
+def recipe(request, user=None, pk=None):
     """used to create or edit a recipe"""
     IngFormSet = inlineformset_factory(Recipe, Ingredient,
                                        exclude=[], extra=5, formset=IngItemFormSet)
 
-    if user and slug:  # must be editing a recipe
-        recipe_inst = get_object_or_404(Recipe, author__username=request.user.username, slug=slug)
+    if user and pk:  # must be editing a recipe
+        recipe_inst = get_object_or_404(Recipe, author__username=request.user.username, pk=pk)
     else:
         recipe_inst = Recipe()
 
@@ -110,7 +110,7 @@ def recipeUser(request, shared, user):
                   {'recipe_list': recipe_list, 'user': user, 'shared': shared})
 
 
-def exportPDF(request, slug):
+def exportPDF(request, pk):
     """Exports recipes to a pdf"""
 
     pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
@@ -119,11 +119,11 @@ def exportPDF(request, slug):
     pdfmetrics.registerFont(TTFont('VeraBI', 'VeraBI.ttf'))
     registerFontFamily('Vera', normal='Vera', bold='VeraBd', italic='VeraIt', boldItalic='VeraBI')
 
-    recipe = get_object_or_404(Recipe, slug=slug)
+    recipe = get_object_or_404(Recipe, pk=pk)
 
     # Create the HttpResponse object with the appropriate PDF headers.
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=' + recipe.slug + '.pdf'
+    response['Content-Disposition'] = 'attachment; filename=' + recipe.title + '.pdf'
 
     # Our container for 'Flowable' objects
     elements = []

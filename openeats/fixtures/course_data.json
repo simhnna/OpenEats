@@ -1,55 +1,43 @@
 [
     {
-        "pk": 5, 
-        "model": "recipe_groups.course", 
+        "pk": 5,
+        "model": "openeats.course",
         "fields": {
-            "author": 1, 
-            "slug": "appetizer", 
             "title": "appetizer"
         }
-    }, 
+    },
     {
-        "pk": 1, 
-        "model": "recipe_groups.course", 
+        "pk": 1,
+        "model": "openeats.course",
         "fields": {
-            "author": 1, 
-            "slug": "breakfast", 
             "title": "breakfast"
         }
-    }, 
+    },
     {
-        "pk": 2, 
-        "model": "recipe_groups.course", 
+        "pk": 2,
+        "model": "openeats.course",
         "fields": {
-            "author": 1, 
-            "slug": "brunch", 
             "title": "brunch"
         }
-    }, 
+    },
     {
-        "pk": 6, 
-        "model": "recipe_groups.course", 
+        "pk": 6,
+        "model": "openeats.course",
         "fields": {
-            "author": 1, 
-            "slug": "dessert", 
             "title": "dessert"
         }
-    }, 
+    },
     {
-        "pk": 4, 
-        "model": "recipe_groups.course", 
+        "pk": 4,
+        "model": "openeats.course",
         "fields": {
-            "author": 1, 
-            "slug": "dinner", 
             "title": "dinner"
         }
-    }, 
+    },
     {
-        "pk": 3, 
-        "model": "recipe_groups.course", 
+        "pk": 3,
+        "model": "openeats.course",
         "fields": {
-            "author": 1, 
-            "slug": "lunch", 
             "title": "lunch"
         }
     }

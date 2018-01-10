@@ -23,13 +23,13 @@
     </div>
 
     <div class="recipe-toolbar">
-      <a class="btn btn-primary btn-sm" href="/recipe/print/{{ recipe.slug }}/">{%trans 'print' %}</a>
+      <a class="btn btn-primary btn-sm" href="/recipe/print/{{ recipe.pk }}/">{%trans 'print' %}</a>
 
         {% if recipe.author == request.user %}
-        <a class="btn btn-primary btn-sm" href="{% url 'recipe_edit' user=request.user.username slug=recipe.slug %}">{% trans 'edit' %}</a>
+        <a class="btn btn-primary btn-sm" href="{% url 'recipe_edit' user=request.user.username pk=recipe.pk %}">{% trans 'edit' %}</a>
         {% endif %}
 
-       <a class="btn btn-primary btn-sm" href="{% url 'recipe_export' slug=recipe.slug %}">pdf</a>
+       <a class="btn btn-primary btn-sm" href="{% url 'recipe_export' pk=recipe.pk %}">pdf</a>
     </div>
 
     <div class="pull-right" id="tags">
@@ -57,9 +57,9 @@
                     </div>
                     <ul class="recipe-groups">
                         <li><span>{% trans "Course:" %}</span> <a
-                                href="{% url 'course_recipes' slug=recipe.course.slug %}">{{ recipe.course }}</a></li>
+                                href="{% url 'course_recipes' pk=recipe.course.pk %}">{{ recipe.course }}</a></li>
                         <li><span>{% trans "Cuisine:" %}</span> <a
-                                href="{% url 'cuisine_recipes' slug=recipe.cuisine.slug %}">{{ recipe.cuisine }}</a>
+                                href="{% url 'cuisine_recipes' pk=recipe.cuisine.pk %}">{{ recipe.cuisine }}</a>
                         </li>
                     </ul>
                     <p>{{ recipe.info|safe }}</p>

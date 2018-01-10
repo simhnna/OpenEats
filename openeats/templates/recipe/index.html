@@ -41,7 +41,7 @@
       <div id="tagcloud" class="accordion-body collapse">
         <ul class="well">
           {% for tag in tags %}
-            <li><a href="{% url 'recipe_tags' tag=tag.slug %}" class="tag{{ tag.weight|floatformat:0 }}">{{tag}}</a></li>
+            <li><a href="{% url 'recipe_tags' tag=tag.pk%}" class="tag{{ tag.weight|floatformat:0 }}">{{tag}}</a></li>
           {% endfor %}
         </ul>
       </div>

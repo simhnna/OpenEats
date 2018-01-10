@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from django_extensions.db.fields import AutoSlugField
-
 from openeats.models.recipe_groups import Course, Cuisine
 
 
@@ -16,7 +14,6 @@ class Recipe(models.Model):
     )
 
     title = models.CharField(_("Recipe Title"), max_length=250)
-    slug = AutoSlugField(_('slug'), populate_from='title', unique=True)
     author = models.ForeignKey(User, verbose_name=_('user'))
     photo = models.ImageField(_('photo'), blank=True, upload_to="upload/recipe_photos")
     course = models.ForeignKey(Course, verbose_name=_('course'))
@@ -38,5 +35,5 @@ class Recipe(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return "/recipe/%s/" % self.slug
+        return "/recipe/%s/" % self.pk
 

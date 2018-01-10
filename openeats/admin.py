@@ -32,41 +32,14 @@ class RecipeAdmin(admin.ModelAdmin):
     radio_fields = {"shared": admin.HORIZONTAL}
 
 
-class StoredRecipeAdmin(admin.ModelAdmin):
-    list_display = ['user', 'recipe']
-    search_fields = ['user__username', 'recipe__title']
-    list_filter = ['user']
-
-
-class ReportedRecipeAdmin(admin.ModelAdmin):
-
-    def remove_recipe(self, request, queryset):
-        """removes a recipe that has been reported"""
-        for obj in queryset:
-            obj.recipe.delete()
-        if queryset.count() == 1:
-            message = "1 recipe was deleted"
-        else:
-            message = "%s recipes were deleted" % queryset.count()
-        self.message_user(request, message)
-        return None
-
-    remove_recipe.short_description = "Remove selected Recipes"
-    actions = ['remove_recipe']
-    list_display = ['recipe', 'reported_by']
-    search_fields = ['reported_by__username', 'recipe__title']
-    list_filter = ['reported_by']
-
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     ordering = ['title']
-    list_display = ['title', 'author']
-    list_filter = ['author']
+    list_display = ['title']
 
 
 @admin.register(Cuisine)
 class CuisineAdmin(admin.ModelAdmin):
     ordering = ['title']
-    list_display = ['title', 'author']
-    list_filter = ['author']
+    list_display = ['title']

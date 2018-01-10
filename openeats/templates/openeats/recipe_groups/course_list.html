@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <h2>{% trans 'Course List' %}</h2>
+    <ul>
+        {% for course in object_list %}
+            <li> {{ course.title }}(<a href="{% url 'course_recipes' pk=course.pk %}">{{ course.recipe_count }}</a> ) </li>
+        {% endfor %}
+    </ul>   
+{% endblock  %}
