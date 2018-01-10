@@ -1,6 +1,5 @@
 from django.conf.urls import include, url
 
-from openeats.models.recipe_groups import Course, Cuisine
 from openeats.views.ingredients import autocomplete_ing
 from openeats.views.recipe_groups import (CourseCreate, CourseList, CuisineCreate,
                                           CuisineList, course_pop, course_recipes,

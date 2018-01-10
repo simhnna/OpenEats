@@ -1,7 +1,7 @@
-from django.urls import reverse
-from django.test import TestCase
-
 from django.contrib.auth.models import User
+from django.test import TestCase
+from django.urls import reverse
+
 
 class URLTest(TestCase):
     fixtures = ['test_user_data.json', 'course_data.json', 'cuisine_data.json',
