@@ -25,7 +25,7 @@ from reportlab.pdfbase.pdfmetrics import registerFontFamily
 
 
 def index(request):
-    recipe_list = Recipe.objects.filter(shared=Recipe.SHARE_SHARED).exclude(photo='').order_by('-pub_date')[0:6]
+    recipe_list = Recipe.objects.filter(shared=Recipe.SHARE_SHARED).order_by('-pub_date')[0:6]
     return render(request, 'recipe/index.html', {'new_recipes': recipe_list})
 
 
@@ -63,7 +63,7 @@ def recipePrint(request, slug):
 @login_required
 def recipe(request, user=None, slug=None):
     """used to create or edit a recipe"""
-    IngFormSet = inlineformset_factory(Recipe, Ingredient, exclude=[], extra=15, formset=IngItemFormSet)  # create the ingredient form with 15 empty fields
+    IngFormSet = inlineformset_factory(Recipe, Ingredient, exclude=[], extra=5, formset=IngItemFormSet)
 
     if user and slug:  # must be editing a recipe
         recipe_inst = get_object_or_404(Recipe, author__username=request.user.username, slug=slug)
@@ -83,8 +83,6 @@ def recipe(request, user=None, slug=None):
             return redirect(new_recipe.get_absolute_url())
     else:
         form = RecipeForm(instance=recipe_inst)
-        if not recipe_inst.related:  # if the related field has not been set on a recipe or it is a new recipe populate the drop down otherwise use the value that is already set
-            form.fields['related'].queryset = Recipe.objects.filter(author__username=request.user.username).exclude(related=F('id')).filter(related__isnull=True).order_by('-pub_date')
 
         if recipe_inst.id:   # if we are editing an existing recipe disable the title field so it can't be changed
             form.fields['title'].widget.attrs['readonly'] = True
