@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from django.contrib import admin
-from .models import Recipe, NoteRecipe
+from .models import Recipe
 from imagekit.admin import AdminThumbnail
 from ingredient.models import Ingredient
 from .forms import IngItemFormSet
@@ -41,11 +41,6 @@ class StoredRecipeAdmin(admin.ModelAdmin):
     list_filter = ['user']
 
 
-class NoteRecipeAdmin(admin.ModelAdmin):
-    list_filter = ('recipe', 'author')
-    list_display = ('recipe', 'author')
-    search_fields = ['author__username', 'recipe']
-
 
 class ReportedRecipeAdmin(admin.ModelAdmin):
 
@@ -75,4 +70,3 @@ class FlatPageAdmin(FlatPageAdmin):
 admin.site.unregister(FlatPage)
 admin.site.register(FlatPage, FlatPageAdmin)
 admin.site.register(Recipe, RecipeAdmin)
-admin.site.register(NoteRecipe, NoteRecipeAdmin)

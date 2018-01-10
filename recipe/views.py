@@ -9,7 +9,7 @@ from django.contrib.staticfiles import finders
 from django.views.generic import DetailView
 from django.utils.translation import ugettext as _
 from django.utils.encoding import smart_str
-from .models import Recipe, NoteRecipe
+from .models import Recipe
 from ingredient.models import Ingredient
 from .forms import RecipeForm, IngItemFormSet, RecipeSendMail
 import json
@@ -43,31 +43,21 @@ def recipeShow(request, slug):
     else:
         request.session['recipe_history'] = [[recipe.title, recipe.get_absolute_url()]]
 
-    if request.user.is_authenticated():
-        note = request.user.noterecipe_set.filter(recipe=recipe, author=request.user)
-    else:
-        note = None
-
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:  # check if the recipe is a private recipe if so through a 404 error
         output = _("Recipe %s is marked Private") % recipe.slug
         raise Http404(output)
     else:
-        return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'note': note})
+        return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
 
 
 def recipePrint(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
 
-    if request.user.is_authenticated():
-        note = request.user.noterecipe_set.filter(recipe=recipe, author=request.user)
-    else:
-        note = None
-
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:  # check if the recipe is a private recipe if so through a 404 error
         output = _("Recipe %s is marked Private") % recipe.slug
         raise Http404(output)
     else:
-        return render(request, 'recipe/recipe_print.html', {'recipe': recipe, 'note': note})
+        return render(request, 'recipe/recipe_print.html', {'recipe': recipe})
 
 
 @login_required
@@ -113,35 +103,6 @@ def recipeUser(request, shared, user):
         recipe_list = Recipe.objects.filter(author__username=user, shared=Recipe.PRIVATE_SHARED).order_by('-pub_date')
 
     return render(request, 'recipe/recipe_userlist.html', {'recipe_list': recipe_list, 'user': user, 'shared': shared})
-
-
-
-@login_required
-def recipeNote(request):
-    """This is called by the jquery inline edit on the recipe detail template to allow users to add notes to recipes"""
-
-    user = request.user
-
-    if request.POST['recipe']:
-        try:
-            recipe = Recipe.objects.get(pk=request.POST['recipe'])
-        except Recipe.DoesNotExist:
-            raise Http404
-        note = request.POST['note']
-
-    cur_note = NoteRecipe.objects.filter(author=user, recipe=recipe)
-
-    if cur_note:  # check to see if the user already has a note if so re-save it with the new text
-        if len(note) == 0 or note.isspace():  # they must want to delete the note so they sent nothing in the text field
-            cur_note[0].delete()
-        else:
-            cur_note[0].text = note
-            cur_note[0].save()
-    else:
-        if len(note) > 0 and not note.isspace():
-            new_note = NoteRecipe(recipe=recipe, author=user, text=note)
-            new_note.save()
-    return HttpResponse(note)
 
 
 def exportPDF(request, slug):

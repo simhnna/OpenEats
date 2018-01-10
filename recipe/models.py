@@ -44,16 +44,3 @@ class Recipe(models.Model):
         if ReportedRecipe.objects.filter(recipe=self):
             return True
 
-
-@python_2_unicode_compatible
-class NoteRecipe(models.Model):
-    recipe = models.ForeignKey(Recipe, verbose_name=_('recipe'))
-    author = models.ForeignKey(User, verbose_name=_('author'))
-    text = models.TextField(_('note'))
-
-    class meta:
-        verbose_name_plural = "Recipe Notes"
-
-    def __str__(self):
-        return "%s note for %s" % (self.author, self.recipe)
-
