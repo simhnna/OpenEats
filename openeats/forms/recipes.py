@@ -30,7 +30,7 @@ class RecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        exclude = ('ingredient')
+        exclude = ('ingredient',)
 
 
 class IngItemFormSet(forms.models.BaseInlineFormSet):
