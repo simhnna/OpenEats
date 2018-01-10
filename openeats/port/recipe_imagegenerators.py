@@ -1,7 +1,6 @@
+"""image kit module spec"""
 from imagekit import ImageSpec, register
 from imagekit.processors import SmartResize
-
-"""image kit module spec"""
 
 
 class RecipeDetail(ImageSpec):
@@ -12,6 +11,7 @@ class RecipeDetail(ImageSpec):
 class RecipeList(ImageSpec):
     processors = [SmartResize(120, 160)]
     format = 'PNG'
+
 
 register.generator('recipe:detail', RecipeDetail)
 register.generator('recipe:list', RecipeList)

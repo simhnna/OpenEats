@@ -1,28 +1,25 @@
 from __future__ import absolute_import
 
-from django.views.generic import ListView
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.forms.models import inlineformset_factory
-from django.http import HttpResponse, Http404
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.staticfiles import finders
-from django.views.generic import DetailView
-from django.utils.translation import ugettext as _
-from django.utils.encoding import smart_str
-from openeats.models.recipes import Recipe
-from openeats.models.ingredients import Ingredient
-from openeats.forms.recipes import RecipeForm, IngItemFormSet
-import json
 from django.conf import settings
-from django.db.models import F
+from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles import finders
+from django.forms.models import inlineformset_factory
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import ugettext as _
+from django.views.generic import ListView
+
+from openeats.forms.recipes import IngItemFormSet, RecipeForm
+from openeats.models.ingredients import Ingredient
+from openeats.models.recipes import Recipe
+
 from reportlab.lib import colors
-from reportlab.lib.units import cm
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import *
+from reportlab.lib.units import cm
 from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.pdfmetrics import registerFontFamily
+from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Spacer
 
 
 def index(request):
@@ -33,7 +30,8 @@ def index(request):
 def recipeShow(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
 
-    # setting the four previously viewed recipes in the user session so they can be easily accessed on the sidebar
+    # setting the four previously viewed recipes in the user session
+    # so they can be easily accessed on the sidebar
     if 'recipe_history' in request.session:
         sessionlist = request.session['recipe_history']
         if [recipe.title, recipe.get_absolute_url()] not in sessionlist:
@@ -44,9 +42,9 @@ def recipeShow(request, slug):
     else:
         request.session['recipe_history'] = [[recipe.title, recipe.get_absolute_url()]]
 
-    if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:  # check if the recipe is a private recipe if so through a 404 error
-        output = _("Recipe %s is marked Private") % recipe.slug
-        raise Http404(output)
+    # check if the recipe is a private recipe if so through a 404 error
+    if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:
+        raise Http404(_("Recipe %s is marked Private") % recipe.slug)
     else:
         return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
 
@@ -54,9 +52,9 @@ def recipeShow(request, slug):
 def recipePrint(request, slug):
     recipe = get_object_or_404(Recipe, slug=slug)
 
-    if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:  # check if the recipe is a private recipe if so through a 404 error
-        output = _("Recipe %s is marked Private") % recipe.slug
-        raise Http404(output)
+    # check if the recipe is a private recipe if so through a 404 error
+    if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:
+        raise Http404(_('Recipe %s is marked Private') % recipe.slug)
     else:
         return render(request, 'recipe/recipe_print.html', {'recipe': recipe})
 
@@ -64,7 +62,8 @@ def recipePrint(request, slug):
 @login_required
 def recipe(request, user=None, slug=None):
     """used to create or edit a recipe"""
-    IngFormSet = inlineformset_factory(Recipe, Ingredient, exclude=[], extra=5, formset=IngItemFormSet)
+    IngFormSet = inlineformset_factory(Recipe, Ingredient,
+                                       exclude=[], extra=5, formset=IngItemFormSet)
 
     if user and slug:  # must be editing a recipe
         recipe_inst = get_object_or_404(Recipe, author__username=request.user.username, slug=slug)
@@ -78,14 +77,16 @@ def recipe(request, user=None, slug=None):
             new_recipe = form.save()
             instances = formset.save(commit=False)  # save the ingredients seperatly
             for instance in instances:
-                instance.recipe_id = new_recipe.id   # set the recipe id foregin key to the this recipe id
+                # set the recipe id foregin key to the this recipe id
+                instance.recipe_id = new_recipe.id
                 instance.save()
             form.save(commit=False)
             return redirect(new_recipe.get_absolute_url())
     else:
         form = RecipeForm(instance=recipe_inst)
 
-        if recipe_inst.id:   # if we are editing an existing recipe disable the title field so it can't be changed
+        # if we are editing an existing recipe disable the title field so it can't be changed
+        if recipe_inst.id:
             form.fields['title'].widget.attrs['readonly'] = True
 
         formset = IngFormSet(instance=recipe_inst)
@@ -93,15 +94,20 @@ def recipe(request, user=None, slug=None):
 
 
 def recipeUser(request, shared, user):
-    """Returns a list of recipes for a giving user if shared is set to share then it will show the shared recipes if it is set to private
-       then only the private recipes will be shown this is mostly used for the users profile to display the users recipes
+    """Returns a list of recipes for a giving user
+    if shared is set to share then it will show the shared recipes
+    if it is set to private then only the private recipes will be shown
+    this is mostly used for the users profile to display the users recipes
     """
     if shared == 'share':
-        recipe_list = Recipe.objects.filter(author__username=user, shared=Recipe.SHARE_SHARED).order_by('-pub_date')
+        recipe_list = Recipe.objects.filter(author__username=user,
+                                            shared=Recipe.SHARE_SHARED).order_by('-pub_date')
     else:
-        recipe_list = Recipe.objects.filter(author__username=user, shared=Recipe.PRIVATE_SHARED).order_by('-pub_date')
+        recipe_list = Recipe.objects.filter(author__username=user,
+                                            shared=Recipe.PRIVATE_SHARED).order_by('-pub_date')
 
-    return render(request, 'recipe/recipe_userlist.html', {'recipe_list': recipe_list, 'user': user, 'shared': shared})
+    return render(request, 'recipe/recipe_userlist.html',
+                  {'recipe_list': recipe_list, 'user': user, 'shared': shared})
 
 
 def exportPDF(request, slug):
@@ -131,7 +137,7 @@ def exportPDF(request, slug):
     styleH2.textColor = colors.goldenrod
     styleH2.fontName = 'Vera'
     styleNormal = styles['Normal']
-    styleNormal.fontName='Vera'
+    styleNormal.fontName = 'Vera'
     styleBullet = styles['Bullet']
     styleBullet.fontName = 'VeraIt'
 
@@ -139,18 +145,17 @@ def exportPDF(request, slug):
     doc = SimpleDocTemplate(response)
 
     # set the openeats logo
-    logo = finders.find(settings.OELOGO)
-    I = Image(logo)
-    I.hAlign = 'LEFT'
-    elements.append(I)
+    logo = Image(finders.find(settings.OELOGO))
+    logo.hAlign = 'LEFT'
+    elements.append(logo)
     elements.append(Spacer(0, 1 * cm))
 
     # add the recipe photo if the recipe has one
     if recipe.photo:
         photo = settings.BASE_PATH + recipe.photo.url
-        I = Image(photo)
-        I.height = "CENTER"
-        elements.append(I)
+        image = Image(photo)
+        image.height = "CENTER"
+        elements.append(image)
         elements.append(Spacer(0, 0.5 * cm))
 
     # add the meat of the pdf
@@ -173,7 +178,7 @@ def exportPDF(request, slug):
 
 class RecentRecipeView(ListView):
     context_object_name = "recipe_list"
-    queryset=Recipe.objects.filter(shared=Recipe.SHARE_SHARED).order_by('-pub_date', 'title')[:20]
+    queryset = Recipe.objects.filter(shared=Recipe.SHARE_SHARED).order_by('-pub_date', 'title')[:20]
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context

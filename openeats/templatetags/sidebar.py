@@ -1,8 +1,12 @@
 from django import template
+
 from openeats.models.recipe_groups import Course, Cuisine
+
 register = template.Library()
 
-@register.inclusion_tag('sidebar/browse.html', takes_context=True)  # get the request context so the sidebar templates have access to the session data
+
+# get the request context so the sidebar templates have access to the session data
+@register.inclusion_tag('sidebar/browse.html', takes_context=True)
 def browse_tag(context):
     courses = Course.objects.all()
     cuisines = Cuisine.objects.all()

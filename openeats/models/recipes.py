@@ -1,12 +1,12 @@
-from django.db import models
 from django.contrib.auth.models import User
-from openeats.models.recipe_groups import Course, Cuisine
-from django_extensions.db.fields import AutoSlugField
+from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+
+from django_extensions.db.fields import AutoSlugField
+
+from openeats.models.recipe_groups import Course, Cuisine
 
 
-@python_2_unicode_compatible
 class Recipe(models.Model):
     SHARE_SHARED = 0
     PRIVATE_SHARED = 1
@@ -25,8 +25,9 @@ class Recipe(models.Model):
     cook_time = models.IntegerField(_('cook time'), help_text="enter time in minutes")
     servings = models.IntegerField(_('servings'), help_text="enter total number of servings")
     directions = models.TextField(_('directions'))
-    shared = models.IntegerField(_('shared'), choices=SHARED_CHOCIES, default=SHARE_SHARED, help_text="share the recipe with the community or mark it private")
-    #tags = TaggableManager(_('tags'), help_text="separate with commas", blank=True)
+    shared = models.IntegerField(_('shared'), choices=SHARED_CHOCIES, default=SHARE_SHARED,
+                                 help_text="share the recipe with the community or mark it private")
+    # tags = TaggableManager(_('tags'), help_text="separate with commas", blank=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
@@ -38,8 +39,4 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return "/recipe/%s/" % self.slug
-
-    def get_reported(self):
-        if ReportedRecipe.objects.filter(recipe=self):
-            return True
 

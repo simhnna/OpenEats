@@ -1,10 +1,9 @@
 from django.db import models
-from openeats.models.recipes import Recipe
 from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import python_2_unicode_compatible
+
+from openeats.models.recipes import Recipe
 
 
-@python_2_unicode_compatible
 class Ingredient(models.Model):
     title = models.CharField(_('title'), max_length=250)
     quantity = models.CharField(_('quantity'), max_length=10)

@@ -1,6 +1,9 @@
 from django import template
-register = template.Library()
+
 from openeats.models.recipes import Recipe
+
+register = template.Library()
+
 
 @register.simple_tag
 def recipe_keywords(recipe_id, tag_count):

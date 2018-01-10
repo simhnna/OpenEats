@@ -1,6 +1,13 @@
-from django.conf.urls import url, include
+from django.conf.urls import include, url
 
-from openeats.views.recipes import recipe, recipePrint, recipeUser, recipeShow, exportPDF, index, RecentRecipeView
+from openeats.models.recipe_groups import Course, Cuisine
+from openeats.views.ingredients import autocomplete_ing
+from openeats.views.recipe_groups import (CourseCreate, CourseList, CuisineCreate,
+                                          CuisineList, course_pop, course_recipes,
+                                          cuisine_pop, cuisine_recipes)
+from openeats.views.recipes import (RecentRecipeView, exportPDF, index, recipe,
+                                    recipePrint, recipeShow, recipeUser)
+from openeats.views.tags import recipeTags
 
 
 recipe_patterns = [
@@ -15,16 +22,13 @@ recipe_patterns = [
 ]
 
 
-from openeats.views.recipe_groups import CourseList, CuisineList, CuisineCreate, CuisineUpdate, CourseCreate, CourseUpdate, course_pop, course_recipes, cuisine_pop, cuisine_recipes
-from openeats.models.recipe_groups import Course, Cuisine
-
 course_info = {
-                "queryset":Course.objects.all(),
-                "template_object_name":"course",
+                'queryset': Course.objects.all(),
+                'template_object_name': 'course',
             }
 cuisine_info = {
-                "queryset":Cuisine.objects.all(),
-                "template_object_name": "cuisine",
+                'queryset': Cuisine.objects.all(),
+                'template_object_name': 'cuisine',
              }
 
 recipe_group_patterns = [
@@ -39,14 +43,10 @@ recipe_group_patterns = [
 ]
 
 
-from openeats.views.ingredients import autocomplete_ing
-
 ingredient_patterns = [
    url(r'^auto/$', autocomplete_ing),
 ]
 
-
-from openeats.views.tags import recipeTags
 
 tag_patterns = [
     url(r'^recipe/(?P<tag>[-\w]+)/$', recipeTags, name="recipe_tags"),
@@ -59,8 +59,3 @@ urlpatterns = [
     url(r'^tags/', include(tag_patterns)),
     url(r'^$', index),
 ]
-
-
-
-
-

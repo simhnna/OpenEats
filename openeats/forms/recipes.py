@@ -1,17 +1,11 @@
 from __future__ import absolute_import
 
-from django.forms import ModelForm
+from django import forms
 from django.template.loader import render_to_string
-from openeats.models.recipes import Recipe
-from openeats.models.recipe_groups import Course, Cuisine
-import django.forms as forms
-from django.forms.models import BaseInlineFormSet
-from django.core.mail import EmailMessage, BadHeaderError
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
-from django.contrib.sites.models import Site
-from django.template import loader
-from django.http import HttpResponse
+
+from openeats.models.recipe_groups import Course, Cuisine
+from openeats.models.recipes import Recipe
 
 
 class SelectWithPop(forms.Select):
@@ -26,7 +20,7 @@ class SelectWithPop(forms.Select):
         return html + popupplus
 
 
-class RecipeForm(ModelForm):
+class RecipeForm(forms.ModelForm):
     """ Used to create new recipes the course and cuisine field are created with a
         speical widget that appends a link and graphic to the end of select field to allow
         users to add new items via a popup form
@@ -36,10 +30,10 @@ class RecipeForm(ModelForm):
 
     class Meta:
         model = Recipe
-        exclude=('slug', 'ingredient')
+        exclude = ('slug', 'ingredient')
 
 
-class IngItemFormSet(BaseInlineFormSet):
+class IngItemFormSet(forms.models.BaseInlineFormSet):
     """Require at least two ingredient in the formset to be completed."""
     def clean(self):
         super(IngItemFormSet, self).clean()
@@ -51,6 +45,5 @@ class IngItemFormSet(BaseInlineFormSet):
             if cleaned_data and not cleaned_data.get('DELETE', False):
                 completed += 1
         if completed < 2:
-            raise forms.ValidationError("At least two %s are required." %
-                                        self.model._meta.object_name.lower())
-
+            raise forms.ValidationError(_('At least two %s are required.' %
+                                          self.model._meta.object_name.lower()))
