@@ -8,349 +8,87 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-31 12:48-0500\n"
+"POT-Creation-Date: 2018-01-10 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dashboard.py:25
-msgid "Quick Links"
+#: forms/recipes.py:48
+#, python-format
+msgid "At least two %s are required."
 msgstr ""
 
-#: dashboard.py:32
-msgid "Return to site"
-msgstr ""
-
-#: dashboard.py:36
-msgid "Change password"
-msgstr ""
-
-#: dashboard.py:40
-msgid "Log out"
-msgstr ""
-
-#: dashboard.py:49 dashboard.py:54
-msgid "Administration"
-msgstr ""
-
-#: dashboard.py:72
-msgid "Third Party Applications"
-msgstr ""
-
-#: dashboard.py:80
-msgid "Recent Actions"
-msgstr ""
-
-#: dashboard.py:88
-msgid "Support"
-msgstr ""
-
-#: dashboard.py:92
-msgid "OpenEats Forum"
-msgstr ""
-
-#: dashboard.py:97
-msgid "Django documentation"
-msgstr ""
-
-#: dashboard.py:102
-msgid "Django \"django-users\" mailing list"
-msgstr ""
-
-#: dashboard.py:111
-msgid "Latest OpenEats2 News"
-msgstr ""
-
-#: settings.py:42 settings_postgres.py:42
-msgid "English"
-msgstr ""
-
-#: settings.py:43 settings_postgres.py:43
-msgid "German"
-msgstr ""
-
-#: settings.py:44 settings_postgres.py:44
-msgid "Spanish"
-msgstr ""
-
-#: accounts/models.py:8
-msgid "Male"
-msgstr ""
-
-#: accounts/models.py:9
-msgid "Female"
-msgstr ""
-
-#: accounts/models.py:11 list/models.py:10 list/models.py:37
-#: recipe/models.py:20 recipe/models.py:58
-msgid "user"
-msgstr ""
-
-#: accounts/models.py:12
-msgid "about"
-msgstr ""
-
-#: accounts/models.py:13
-msgid "gender"
-msgstr ""
-
-#: accounts/models.py:14
-msgid "url"
-msgstr ""
-
-#: accounts/models.py:15
-msgid "location"
-msgstr ""
-
-#: accounts/models.py:20
-msgid "User profiles"
-msgstr ""
-
-#: accounts/views.py:14
-msgid "You have been logged out!."
-msgstr ""
-
-#: feed/views.py:7
-msgid " Recent Recipes"
-msgstr ""
-
-#: feed/views.py:9
-msgid "Updates added on new recipes added to "
-msgstr ""
-
-#: feed/views.py:21
-msgid " Top Recipes"
-msgstr ""
-
-#: feed/views.py:23
-msgid "Top recipes on "
-msgstr ""
-
-#: ingredient/models.py:6 news/models.py:6 recipe_groups/models.py:7
-#: recipe_groups/models.py:24
+#: models/ingredients.py:8 models/recipe_groups.py:6 models/recipe_groups.py:22
 msgid "title"
 msgstr ""
 
-#: ingredient/models.py:7
+#: models/ingredients.py:9
 msgid "quantity"
 msgstr ""
 
-#: ingredient/models.py:8
+#: models/ingredients.py:10
 msgid "measurement"
 msgstr ""
 
-#: ingredient/models.py:9
+#: models/ingredients.py:11
 msgid "preparation"
 msgstr ""
 
-#: ingredient/models.py:10 list/models.py:75 recipe/models.py:57
-#: recipe/models.py:64 recipe/models.py:75
+#: models/ingredients.py:13
 msgid "recipe"
 msgstr ""
 
-#: list/forms.py:71
-msgid "Aisle with this name already exists for your account"
-msgstr ""
-
-#: list/forms.py:95 recipe/forms.py:61
-msgid "email address"
-msgstr ""
-
-#: list/forms.py:100
-msgid "Grocery list from "
-msgstr ""
-
-#: list/forms.py:111
-msgid "Can not get grocery list id from invalid form data"
-msgstr ""
-
-#: list/forms.py:118 recipe/forms.py:86
-msgid "Can not get to_email from invalid form data"
-msgstr ""
-
-#: list/forms.py:128 recipe/forms.py:98
-msgid "Invalid header found."
-msgstr ""
-
-#: list/forms.py:129 recipe/forms.py:99
-msgid "Email Sent"
-msgstr ""
-
-#: list/models.py:8
-msgid "grocery list title"
-msgstr ""
-
-#: list/models.py:9 news/models.py:7 recipe/models.py:19
-#: recipe_groups/models.py:8 recipe_groups/models.py:25
-msgid "slug"
-msgstr ""
-
-#: list/models.py:36
-msgid "aisle"
-msgstr ""
-
-#: list/models.py:46 list/models.py:57 list/models.py:74
-#: templates/list/grocery_addrecipe.html:3
-#: templates/list/grocery_detail.html:3 templates/list/grocery_index.html:6
-#: templates/list/grocerylist_form.html:19
-#: templates/profiles/profile_detail.html:74 templates/sidebar/grocery.html:37
-msgid "grocery list"
-msgstr ""
-
-#: list/models.py:47
-msgid "item"
-msgstr ""
-
-#: list/models.py:58
-msgid "shared by"
-msgstr ""
-
-#: list/models.py:59
-msgid "shared to"
-msgstr ""
-
-#: list/views.py:27
-msgid "Your grocery list has been removed."
-msgstr ""
-
-#: list/views.py:59 list/views.py:63
-msgid "You do not have permissions to edit this list "
-msgstr ""
-
-#: list/views.py:97 list/views.py:101
-msgid "You do not have permissions to view this list "
-msgstr ""
-
-#: list/views.py:164
-msgid "Your grocery list has been shared."
-msgstr ""
-
-#: list/views.py:178
-msgid "Grocery List has been un-shared"
-msgstr ""
-
-#: list/views.py:205
-msgid "New Aisle added"
-msgstr ""
-
-#: news/models.py:8
-msgid "content"
-msgstr ""
-
-#: news/models.py:9
-msgid "frontpage"
-msgstr ""
-
-#: news/models.py:10
-msgid "image"
-msgstr ""
-
-#: pagination/templates/pagination/pagination.html:6
-#: pagination/templates/pagination/pagination.html:8
-#: templates/pagination/pagination.html:7
-#: templates/pagination/pagination.html:9
-msgid "previous"
-msgstr ""
-
-#: pagination/templates/pagination/pagination.html:22
-#: pagination/templates/pagination/pagination.html:24
-#: templates/pagination/pagination.html:23
-#: templates/pagination/pagination.html:25
-msgid "next"
-msgstr ""
-
-#: recipe/forms.py:72
-msgid "Can not get the recipe id from invalid form data"
-msgstr ""
-
-#: recipe/forms.py:90
-msgid " recipe: "
-msgstr ""
-
-#: recipe/models.py:14
+#: models/recipes.py:12
 msgid "Share"
 msgstr ""
 
-#: recipe/models.py:15
+#: models/recipes.py:13
 msgid "Private"
 msgstr ""
 
-#: recipe/models.py:18
+#: models/recipes.py:16
 msgid "Recipe Title"
 msgstr ""
 
-#: recipe/models.py:21
+#: models/recipes.py:17
+msgid "user"
+msgstr ""
+
+#: models/recipes.py:18
 msgid "photo"
 msgstr ""
 
-#: recipe/models.py:22
+#: models/recipes.py:19
 msgid "course"
 msgstr ""
 
-#: recipe/models.py:23
+#: models/recipes.py:20
 msgid "cuisine"
 msgstr ""
 
-#: recipe/models.py:24 templates/profiles/profile_detail.html:47
+#: models/recipes.py:21 templates/profiles/profile_detail.html:47
 msgid "info"
 msgstr ""
 
-#: recipe/models.py:25 templates/recipe/recipe_detail.html:167
-#: templates/recipe/recipe_print.html:24
+#: models/recipes.py:22 templates/recipe/recipe_detail.html:55
+#: templates/recipe/recipe_print.html:23
 msgid "cook time"
 msgstr ""
 
-#: recipe/models.py:26
+#: models/recipes.py:23
 msgid "servings"
 msgstr ""
 
-#: recipe/models.py:27
+#: models/recipes.py:24
 msgid "directions"
 msgstr ""
 
-#: recipe/models.py:28
+#: models/recipes.py:25
 msgid "shared"
-msgstr ""
-
-#: recipe/models.py:29
-msgid "tags"
-msgstr ""
-
-#: recipe/models.py:31
-msgid "related"
-msgstr ""
-
-#: recipe/models.py:65 recipe/models.py:76 recipe_groups/models.py:9
-#: recipe_groups/models.py:26
-msgid "author"
-msgstr ""
-
-#: recipe/models.py:66
-msgid "note"
-msgstr ""
-
-#: recipe/views.py:47 recipe/views.py:61
-#, python-format
-msgid "Recipe %s is marked Private"
-msgstr ""
-
-#: recipe/views.py:135
-msgid "Recipe already in your favorites!"
-msgstr ""
-
-#: recipe/views.py:141
-msgid "Recipe added to your favorites!"
-msgstr ""
-
-#: recipe/views.py:270
-msgid "Recipe has already been reported!"
-msgstr ""
-
-#: recipe/views.py:275
-msgid "Recipe reported to the moderators!"
 msgstr ""
 
 #: templates/404.html:3
@@ -373,25 +111,6 @@ msgstr ""
 msgid "return to site"
 msgstr ""
 
-#: templates/base.html:13
-msgid "Top Recipe Feed"
-msgstr ""
-
-#: templates/base.html:48 templates/profiles/create_profile.html:5
-#: templates/profiles/edit_profile.html:6
-#: templates/profiles/profile_detail.html:7
-#: templates/profiles/profile_detail.html:39
-msgid "profile"
-msgstr ""
-
-#: templates/base.html:49
-msgid "grocery lists"
-msgstr ""
-
-#: templates/base.html:51 templates/profiles/profile_detail.html:86
-msgid "logout"
-msgstr ""
-
 #: templates/accounts/signIn_page.html:19
 msgid "sign in"
 msgstr ""
@@ -400,173 +119,67 @@ msgstr ""
 msgid "sign up"
 msgstr ""
 
-#: templates/friends/_feed.html:8
-msgid "new recipe added- "
+#: templates/base.html:46 templates/profiles/create_profile.html:5
+#: templates/profiles/edit_profile.html:5
+#: templates/profiles/profile_detail.html:6
+#: templates/profiles/profile_detail.html:41
+msgid "profile"
 msgstr ""
 
-#: templates/friends/_feed.html:16
-msgid "rated a recipe "
+#: templates/base.html:48 templates/profiles/profile_detail.html:83
+msgid "logout"
 msgstr ""
 
-#: templates/friends/_feed.html:16
-msgid "out of 5 - "
+#: templates/openeats/recipe_groups/course_form.html:9
+msgid "add course"
 msgstr ""
 
-#: templates/friends/_feed.html:26
-msgid "new shared list- "
+#: templates/openeats/recipe_groups/course_list.html:4
+msgid "Course List"
 msgstr ""
 
-#: templates/friends/feed.html:5
-msgid "feed for "
+#: templates/openeats/recipe_groups/cuisine_list.html:6
+msgid "Cuisine List"
 msgstr ""
 
-#: templates/friends/list.html:7
-msgid "chefs I'm following-"
+#: templates/openeats/recipe_groups/popadd.html:8
+msgid "Add"
 msgstr ""
 
-#: templates/friends/list.html:14
-msgid "un-follow"
+#: templates/openeats/recipe_groups/popadd.html:12
+#, python-format
+msgid "Add %(field)s"
 msgstr ""
 
-#: templates/friends/list.html:22
-msgid "chefs following me-"
+#: templates/openeats/recipe_groups/popadd.html:17
+msgid "submit"
 msgstr ""
 
-#: templates/friends/list.html:29
-msgid "follow"
+#: templates/openeats/recipe_groups/popadd.html:17
+msgid "Cancel"
 msgstr ""
 
-#: templates/friends/list.html:29
-msgid "block"
+#: templates/openeats/recipe_groups/recipe_list.html:13
+msgid "Recipes in "
 msgstr ""
 
-#: templates/friends/list.html:37
-msgid "chefs I'm blocking-"
+#: templates/pagination/pagination.html:7
+#: templates/pagination/pagination.html:9
+msgid "previous"
 msgstr ""
 
-#: templates/friends/list.html:44
-msgid "unblock"
-msgstr ""
-
-#: templates/list/_aisles.html:19
-msgid "Current Aisles"
-msgstr ""
-
-#: templates/list/_aisles.html:24
-msgid "you have not created any aisles yet!"
-msgstr ""
-
-#: templates/list/_list.html:10 templates/list/grocery_index.html:13
-msgid "created on "
-msgstr ""
-
-#: templates/list/grocery_addrecipe.html:11
-#: templates/list/grocery_share.html:8 templates/list/groceryaisle_form.html:9
-msgid "save"
-msgstr ""
-
-#: templates/list/grocery_addrecipe.html:12
-#: templates/list/grocery_share.html:9
-#: templates/list/groceryaisle_form.html:10
-#: templates/list/grocerylist_form.html:51
-#: templates/recipe/recipe_form.html:164
-msgid "cancel"
-msgstr ""
-
-#: templates/list/grocery_ajax.html:29
-msgid "You have not added any grocery list yet!"
-msgstr ""
-
-#: templates/list/grocery_ajax.html:30 templates/list/grocery_index.html:24
-msgid "create a grocery list"
-msgstr ""
-
-#: templates/list/grocery_detail.html:8
-msgid "this list is currently shared by"
-msgstr ""
-
-#: templates/list/grocery_detail.html:8
-msgid "to user"
-msgstr ""
-
-#: templates/list/grocery_detail.html:11
-msgid "grocery list -"
-msgstr ""
-
-#: templates/list/grocery_index.html:3
-msgid "Grocery List"
-msgstr ""
-
-#: templates/list/grocery_index.html:23
-msgid "You do not have any grocery list created"
-msgstr ""
-
-#: templates/list/grocery_index.html:28
-msgid "shared list"
-msgstr ""
-
-#: templates/list/grocery_index.html:34
-msgid "shared by "
-msgstr ""
-
-#: templates/list/grocery_mail_body.html:8
-#: templates/recipe/recipe_mail_body.html:8
-msgid "Email"
-msgstr ""
-
-#: templates/list/grocery_mail_body.html:13
-#: templates/list/grocery_print.html:14
-msgid "grocery list "
-msgstr ""
-
-#: templates/list/grocery_print.html:8 templates/recipe/recipe_print.html:9
-msgid "Print"
-msgstr ""
-
-#: templates/list/groceryaisle_form.html:5
-msgid "add new aisle"
-msgstr ""
-
-#: templates/list/grocerylist_form.html:29
-msgid "items"
-msgstr ""
-
-#: templates/list/grocerylist_form.html:50
-msgid "save list"
-msgstr ""
-
-#: templates/news/entry_list.html:4
-msgid "news"
-msgstr ""
-
-#: templates/news/entry_list.html:13 templates/news/front_page.html:11
-#: templates/recipe/_list.html:47 templates/search/search.html:56
-msgid "read more"
-msgstr ""
-
-#: templates/news/entry_list.html:18
-msgid "There currently isn't any news"
+#: templates/pagination/pagination.html:23
+#: templates/pagination/pagination.html:25
+msgid "next"
 msgstr ""
 
 #: templates/profiles/create_profile.html:5
-#: templates/profiles/edit_profile.html:6
-#: templates/recipe/recipe_detail.html:119
+#: templates/profiles/edit_profile.html:5
+#: templates/recipe/recipe_detail.html:30
 msgid "edit"
 msgstr ""
 
-#: templates/profiles/edit_profile.html:15
-msgid "To change your profile picture you will need to create/login to"
-msgstr ""
-
-#: templates/profiles/edit_profile.html:15
-msgid "Gravata"
-msgstr ""
-
-#: templates/profiles/edit_profile.html:15
-msgid "using the same email address you used for this site"
-msgstr ""
-
-#: templates/profiles/edit_profile.html:28
+#: templates/profiles/edit_profile.html:14
 msgid "Change Password"
 msgstr ""
 
@@ -582,223 +195,124 @@ msgstr ""
 msgid "website:"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:62
+#: templates/profiles/profile_detail.html:63
 msgid "all about me"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:70
+#: templates/profiles/profile_detail.html:71
 msgid "recipes"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:72
+#: templates/profiles/profile_detail.html:73
 msgid "private recipes"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:73
-msgid "favorites"
-msgstr ""
-
-#: templates/profiles/profile_detail.html:75
-msgid "followers"
-msgstr ""
-
-#: templates/profiles/profile_detail.html:76
-msgid "feed"
-msgstr ""
-
-#: templates/profiles/profile_detail.html:77
+#: templates/profiles/profile_detail.html:74
 msgid "settings"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:84
+#: templates/profiles/profile_detail.html:81
 msgid "edit Profile"
 msgstr ""
 
-#: templates/profiles/profile_detail.html:85
+#: templates/profiles/profile_detail.html:82
 #: templates/registration/password_change_form.html:16
 msgid "change password"
 msgstr ""
 
-#: templates/recipe/_list.html:29 templates/recipe/recipe_detail.html:155
-#: templates/recipe/recipe_print.html:17 templates/search/search.html:38
-msgid "Chef:"
+#: templates/recipe/_list.html:15
+msgid "Author:"
 msgstr ""
 
-#: templates/recipe/_list.html:32 templates/search/search.html:41
-msgid "Average Rating:"
-msgstr ""
-
-#: templates/recipe/_list.html:34 templates/recipe/recipe_detail.html:143
-#: templates/search/search.html:43
-msgid "Poor"
-msgstr ""
-
-#: templates/recipe/_list.html:35 templates/recipe/recipe_detail.html:144
-#: templates/search/search.html:44
-msgid "Fair"
-msgstr ""
-
-#: templates/recipe/_list.html:36 templates/recipe/recipe_detail.html:145
-#: templates/search/search.html:45
-msgid "OK"
-msgstr ""
-
-#: templates/recipe/_list.html:37 templates/recipe/recipe_detail.html:146
-#: templates/search/search.html:46
-msgid "Good"
-msgstr ""
-
-#: templates/recipe/_list.html:38 templates/recipe/recipe_detail.html:147
-#: templates/search/search.html:47
-msgid "Wow"
-msgstr ""
-
-#: templates/recipe/index.html:41
+#: templates/recipe/index.html:38
 msgid "recipe tags"
 msgstr ""
 
-#: templates/recipe/recipe_cook.html:8 templates/recipe/recipe_print.html:14
-msgid "Recipe is marked Private and you are not the author of it!"
-msgstr ""
-
-#: templates/recipe/recipe_cook.html:15
-#: templates/recipe/recipe_detail.html:183
-#: templates/recipe/recipe_print.html:28
-msgid "Ingredients"
-msgstr ""
-
-#: templates/recipe/recipe_cook.html:32
-#: templates/recipe/recipe_detail.html:201
-msgid "Directions"
-msgstr ""
-
-#: templates/recipe/recipe_detail.html:115
+#: templates/recipe/recipe_detail.html:27
 msgid "print"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:116
-msgid "cook"
-msgstr ""
-
-#: templates/recipe/recipe_detail.html:126
-msgid "add to list"
-msgstr ""
-
-#: templates/recipe/recipe_detail.html:127
-msgid "email recipe "
-msgstr ""
-
-#: templates/recipe/recipe_detail.html:127
-msgid "email"
-msgstr ""
-
-#: templates/recipe/recipe_detail.html:133
+#: templates/recipe/recipe_detail.html:37
 msgid "tags:"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:141
-msgid "rate this:"
+#: templates/recipe/recipe_detail.html:46 templates/recipe/recipe_print.html:16
+#: templates/search/search.html:41
+msgid "Chef:"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:166
-#: templates/recipe/recipe_print.html:23
+#: templates/recipe/recipe_detail.html:52 templates/recipe/recipe_print.html:22
 msgid "serves"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:172
+#: templates/recipe/recipe_detail.html:60
 msgid "Course:"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:173
+#: templates/recipe/recipe_detail.html:62
 msgid "Cuisine:"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:211
-#: templates/recipe/recipe_print.html:52
-msgid "Your Notes:"
+#: templates/recipe/recipe_detail.html:77 templates/recipe/recipe_print.html:27
+msgid "Ingredients"
 msgstr ""
 
-#: templates/recipe/recipe_detail.html:224
-msgid "comments"
+#: templates/recipe/recipe_detail.html:101
+msgid "Directions"
 msgstr ""
 
 #: templates/recipe/recipe_form.html:5
 msgid "Add Recipe"
 msgstr ""
 
-#: templates/recipe/recipe_form.html:55
+#: templates/recipe/recipe_form.html:46
 msgid "recipe info"
 msgstr ""
 
-#: templates/recipe/recipe_form.html:139
+#: templates/recipe/recipe_form.html:130
 msgid "ingedients"
 msgstr ""
 
-#: templates/recipe/recipe_form.html:163
+#: templates/recipe/recipe_form.html:154
 msgid "save recipe"
 msgstr ""
 
-#: templates/recipe/recipe_list.html:7
+#: templates/recipe/recipe_form.html:155
+msgid "cancel"
+msgstr ""
+
+#: templates/recipe/recipe_list.html:6
 #, python-format
 msgid "%(title)s Recipe Feed"
 msgstr ""
 
-#: templates/recipe/recipe_list.html:16
+#: templates/recipe/recipe_list.html:15
 #, python-format
 msgid "%(title)s"
 msgstr ""
 
-#: templates/recipe/recipe_mail_body.html:13
-msgid " has shared a recipe with you"
+#: templates/recipe/recipe_print.html:8
+msgid "Print"
 msgstr ""
 
-#: templates/recipe/recipe_print.html:24
+#: templates/recipe/recipe_print.html:13
+msgid "Recipe is marked Private and you are not the author of it!"
+msgstr ""
+
+#: templates/recipe/recipe_print.html:23
 msgid "mintues"
 msgstr ""
 
-#: templates/recipe/recipe_print.html:44
+#: templates/recipe/recipe_print.html:43
 msgid "Steps"
 msgstr ""
 
-#: templates/recipe/recipe_userfav.html:32
-msgid "You have not added any favorite recipes yet!"
+#: templates/recipe/recipe_print.html:51
+msgid "Your Notes:"
 msgstr ""
 
 #: templates/recipe/recipe_userlist.html:41
 msgid "has not added any recipes yet!"
-msgstr ""
-
-#: templates/recipe_groups/course_form.html:9
-msgid "add course"
-msgstr ""
-
-#: templates/recipe_groups/course_list.html:6
-msgid "Course List"
-msgstr ""
-
-#: templates/recipe_groups/cuisine_list.html:6
-msgid "Cuisine List"
-msgstr ""
-
-#: templates/recipe_groups/popadd.html:8
-msgid "Add"
-msgstr ""
-
-#: templates/recipe_groups/popadd.html:12
-#, python-format
-msgid "Add %(field)s"
-msgstr ""
-
-#: templates/recipe_groups/popadd.html:17
-msgid "submit"
-msgstr ""
-
-#: templates/recipe_groups/popadd.html:17
-msgid "Cancel"
-msgstr ""
-
-#: templates/recipe_groups/recipe_list.html:14
-msgid "Recipes in "
 msgstr ""
 
 #: templates/registration/_create_form.html:5
@@ -806,7 +320,7 @@ msgstr ""
 msgid "Alert!"
 msgstr ""
 
-#: templates/registration/_create_form.html:46
+#: templates/registration/_create_form.html:50
 msgid "create account"
 msgstr ""
 
@@ -930,137 +444,51 @@ msgstr ""
 msgid "you have been emailed an activation link"
 msgstr ""
 
-#: templates/relationships/confirm.html:4
-#: templates/relationships/confirm.html:7
-msgid "No longer"
-msgstr ""
-
-#: templates/relationships/confirm.html:12
-msgid "Confirm"
-msgstr ""
-
-#: templates/relationships/success.html:5
-msgid "Success"
-msgstr ""
-
-#: templates/relationships/success.html:6
-msgid "You are "
-msgstr ""
-
-#: templates/relationships/success.html:6
-msgid "now"
-msgstr ""
-
-#: templates/relationships/success.html:6
-msgid "no longer"
-msgstr ""
-
-#: templates/relationships/success.html:7
-#, python-format
-msgid "%(to_user_username)s's profile"
-msgstr ""
-
-#: templates/search/search.html:15
+#: templates/search/search.html:14
 msgid "Search Results"
 msgstr ""
 
-#: templates/search/search.html:60
+#: templates/search/search.html:47
+msgid "Average Rating:"
+msgstr ""
+
+#: templates/search/search.html:50
+msgid "Poor"
+msgstr ""
+
+#: templates/search/search.html:51
+msgid "Fair"
+msgstr ""
+
+#: templates/search/search.html:52
+msgid "OK"
+msgstr ""
+
+#: templates/search/search.html:53
+msgid "Good"
+msgstr ""
+
+#: templates/search/search.html:54
+msgid "Wow"
+msgstr ""
+
+#: templates/search/search.html:65
 msgid "No Results found for search query"
 msgstr ""
 
-#: templates/sidebar/browse.html:6
+#: templates/sidebar/browse.html:4
 msgid "last viewed"
 msgstr ""
 
-#: templates/sidebar/browse.html:15
+#: templates/sidebar/browse.html:12
 msgid "browse"
 msgstr ""
 
-#: templates/sidebar/browse.html:16
-msgid "top recipes"
-msgstr ""
-
-#: templates/sidebar/browse.html:17
+#: templates/sidebar/browse.html:14
 msgid "recent recipes"
 msgstr ""
 
-#: templates/sidebar/grocery.html:10
-msgid "actions"
-msgstr ""
-
-#: templates/sidebar/grocery.html:11
-msgid "print "
-msgstr ""
-
-#: templates/sidebar/grocery.html:12
-msgid "edit "
-msgstr ""
-
-#: templates/sidebar/grocery.html:13
-msgid "send list "
-msgstr ""
-
-#: templates/sidebar/grocery.html:13
-msgid "email "
-msgstr ""
-
-#: templates/sidebar/grocery.html:15
-msgid "delete "
-msgstr ""
-
-#: templates/sidebar/grocery.html:19
-msgid "share"
-msgstr ""
-
-#: templates/sidebar/grocery.html:21
-msgid "un-share"
-msgstr ""
-
-#: templates/sidebar/grocery.html:26
-msgid "recipes on list"
-msgstr ""
-
-#: templates/sidebar/grocery.html:30
-msgid "no recipes"
-msgstr ""
-
-#: templates/sidebar/grocery.html:38
-msgid "create"
-msgstr ""
-
-#: templates/sidebar/grocery.html:39
-msgid "list"
-msgstr ""
-
-#: templates/sidebar/grocery.html:40
-msgid "manage aisles"
-msgstr ""
-
-#: templates/sidebar/grocery.html:41
-msgid "browse recipes"
-msgstr ""
-
-#: templatetags/front_page.py:14
-msgid "No Front page News"
-msgstr ""
-
-#: templatetags/front_page.py:15
-msgid "Currently not any front page news on this site"
-msgstr ""
-
-#: templatetags/recipe_links.py:13
-msgid "bookmakred"
-msgstr ""
-
-#: templatetags/recipe_links.py:15 templatetags/recipe_links.py:19
-#: templatetags/recipe_links.py:34
-msgid "favorite"
-msgstr ""
-
-#: templatetags/recipe_links.py:28
-msgid "reported!"
-msgstr ""
-
-#: templatetags/recipe_links.py:30
-msgid "report"
+#: views/recipes.py:47 views/recipes.py:57
+#, python-format
+msgid "Recipe %s is marked Private"
 msgstr ""
