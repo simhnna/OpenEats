@@ -151,7 +151,6 @@ INSTALLED_APPS = (
     'recipe_groups',
     'ingredient',
     'accounts',
-    'list',
     'openeats',
 )
 

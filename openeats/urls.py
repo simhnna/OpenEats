@@ -25,7 +25,6 @@ urlpatterns = [
     url(r'^groups/', include('recipe_groups.urls')),
     url(r'^recipe/', include('recipe.urls')),
     url(r'^ingredient/', include('ingredient.urls')),
-    url(r'^list/', include('list.urls')),
     url(r'^tags/', include('tags.urls')),
     url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^$', index),

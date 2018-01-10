@@ -1,4 +1,3 @@
-from list.models import GroceryShared
 from django import template
 register = template.Library()
 
@@ -9,14 +8,8 @@ def recipe_feed(following):
     return {'recipes':recipes, 'following':following}
 
 @register.inclusion_tag('friends/_feed.html')
-def list_feed(following,user):
-    """takes a user someone is following and returns a list of grocery list they have shared with you"""
-    lists = GroceryShared.objects.filter(shared_by=following).filter(shared_to=user)
-    return {'lists':lists, 'following':following}
-
-@register.inclusion_tag('friends/_feed.html')
 def rate_feed(following):
     """returns the last five recipes a friend has voted on"""
     rated = following.votes.order_by('-date_changed')
     return{'rated':rated, 'following':following}
-    
+
