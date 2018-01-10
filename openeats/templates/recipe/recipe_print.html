@@ -1,6 +1,5 @@
 {% comment %}This template is the template for the recipe print view{% endcomment %}
 {% load i18n %}
-{% load sanitize %}
 <html>
     <head>
         <link rel="stylesheet" type="text/css" media="print" href="{{STATIC_URL}}/css/prints.css" />
@@ -15,7 +14,7 @@
         <h3> {{ recipe }} - <span class="print-site"> {{ OETITLE }}</span></h3>
         <p id="print-user"><b>{% trans 'Chef:' %}</b> {{ recipe.author }}</p>
         <div class="print-desc">
-            {{ recipe.info|sanitize_html|safe }}
+            {{ recipe.info|safe }}
         </div>
         <div>
             <ul class="list">
@@ -41,10 +40,10 @@
         </div>
         <div>
             <h4>{% trans 'Steps' %}</h4>
-           {{ recipe.directions|sanitize_html|safe }}
+           {{ recipe.directions|safe }}
             {% if recipe.related %}
                 <h4>{{ recipe.related }}</h4>
-                {{ recipe.related.directions|sanitize_html|safe }}
+                {{ recipe.related.directions|safe }}
             {% endif %}
         </div>
         <div>

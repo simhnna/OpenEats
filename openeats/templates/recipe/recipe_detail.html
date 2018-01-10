@@ -3,7 +3,6 @@
 
 {% load i18n %}
 {% load recipe_keywords %}
-{% load sanitize %}
 {% load ratings %}
 {% load recipe_links %}
 {% load imagekit %}
@@ -193,7 +192,7 @@
                                 href="{% url 'cuisine_recipes' slug=recipe.cuisine.slug %}">{{ recipe.cuisine }}</a>
                         </li>
                     </ul>
-                    <p>{{ recipe.info|sanitize_html|safe }}</p>
+                    <p>{{ recipe.info|safe }}</p>
                 </div>
             </div>
         </div>
@@ -231,10 +230,10 @@
                     <h3 class="panel-title"><i class="glyphicon glyphicon-pencil"></i> {% trans "Directions" %}</h3>
                 </div>
                 <div class="panel-body">
-                    {{ recipe.directions|sanitize_html|safe }}
+                    {{ recipe.directions|safe }}
                     {% if recipe.related %}
                         <h4>{{ recipe.related }}</h4>
-                        {{ recipe.related.directions|sanitize_html|safe }}
+                        {{ recipe.related.directions|safe }}
                     {% endif %}
                 </div>
             </div>

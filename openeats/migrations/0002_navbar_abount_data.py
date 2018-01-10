@@ -81,7 +81,7 @@ openeats_navbar = [
         "lft": 1,
         "rght": 2,
         "tree_id": 1,
-        "level": 0     
+        "level": 0
     },
     {
         "pk": 7,
@@ -127,7 +127,7 @@ openeats_navbar = [
 #        "lft": 1,
 #        "rght": 2,
 #        "tree_id": 1,
-#        "level": 0        
+#        "level": 0
      }
 ]
 
@@ -145,5 +145,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(add_navbar)
     ]

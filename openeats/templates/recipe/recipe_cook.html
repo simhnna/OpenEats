@@ -1,6 +1,5 @@
 {% comment %}This template is for the cook view for a recipe{% endcomment %}
 {% load i18n %}
-{% load sanitize %}
 
 
 {% if recipe.shared == 1 and recipe.author != request.user %}
@@ -29,10 +28,10 @@
 
      <div>
        <h2>{%trans 'Directions' %}</h2>
-       {{ recipe.directions|sanitize_html|safe }}
+       {{ recipe.directions|safe }}
        {% if recipe.related %}
          <h4>{{ recipe.related }}</h4>
-           {{ recipe.related.directions|sanitize_html|safe }}
+           {{ recipe.related.directions|safe }}
        {% endif %}
       </div>
   </div>

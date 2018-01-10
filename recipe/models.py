@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from taggit.managers import TaggableManager
 from recipe_groups.models import Course, Cuisine
 from django_extensions.db.fields import AutoSlugField
 from django.utils.translation import ugettext_lazy as _
@@ -27,7 +26,7 @@ class Recipe(models.Model):
     servings = models.IntegerField(_('servings'), help_text="enter total number of servings")
     directions = models.TextField(_('directions'))
     shared = models.IntegerField(_('shared'), choices=SHARED_CHOCIES, default=SHARE_SHARED, help_text="share the recipe with the community or mark it private")
-    tags = TaggableManager(_('tags'), help_text="separate with commas", blank=True)
+    #tags = TaggableManager(_('tags'), help_text="separate with commas", blank=True)
     related = models.OneToOneField('Recipe', verbose_name=_('related'), related_name='RecipeRelated', blank=True, null=True, help_text="relate another recipe")
     pub_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
@@ -43,7 +42,7 @@ class Recipe(models.Model):
 
     def get_reported(self):
         if ReportedRecipe.objects.filter(recipe=self):
-            return True        
+            return True
 
 
 @python_2_unicode_compatible
