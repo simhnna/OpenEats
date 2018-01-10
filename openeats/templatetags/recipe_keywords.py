@@ -7,11 +7,8 @@ def recipe_keywords(recipe_id, tag_count):
     recipe = Recipe.objects.get(pk=recipe_id)
     keyword_list = []
     keyword_list.append(recipe.title)
-    for tag in recipe.tags.all():
+    for tag in []:
         keyword_list.append(tag.name)
     keyword_string = ','.join(keyword_list[0:tag_count])
     return keyword_string
-
-    
-
 

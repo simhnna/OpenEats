@@ -29,7 +29,7 @@ class TagResource(ModelResource):
 class RecipeResource(ModelResource):
     ingredients = fields.ToManyField(IngredientResource, 'ingredients', full=True)
     author = fields.OneToOneField(AuthorResource, 'author', full=True)
-    tags = fields.OneToManyField(TagResource, 'tags', full=True)
+    #tags = fields.OneToManyField(TagResource, 'tags', full=True)
     class Meta:
         queryset = Recipe.objects.filter(shared=Recipe.SHARE_SHARED)
         excludes = ['id']
@@ -52,7 +52,7 @@ class ListItemsResource(ModelResource):
 class GroceryResource(ModelResource):
     author = fields.OneToOneField(AuthorResource, 'author', full=True)
     items = fields.ToManyField(ListItemsResource, 'items', full=True)
-    
+
     class Meta:
         queryset = GroceryList.objects.all()
         resource_name = 'lists'

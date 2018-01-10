@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import django_extensions.db.fields
-import taggit.managers
 
 
 class Migration(migrations.Migration):
@@ -47,7 +46,6 @@ class Migration(migrations.Migration):
                 ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipe_groups.Course', verbose_name='course')),
                 ('cuisine', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipe_groups.Cuisine', verbose_name='cuisine')),
                 ('related', models.OneToOneField(blank=True, help_text='relate another recipe', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='RecipeRelated', to='recipe.Recipe', verbose_name='related')),
-                ('tags', taggit.managers.TaggableManager(blank=True, help_text='separate with commas', through='taggit.TaggedItem', to='taggit.Tag', verbose_name='tags')),
             ],
             options={
                 'ordering': ['pub_date', 'title'],
