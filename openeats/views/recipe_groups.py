@@ -15,7 +15,7 @@ def course_recipes(request, pk):
     course_object = get_object_or_404(Course, pk=pk)
     recipe_list = course_object.recipe_set.filter(shared=Recipe.SHARE_SHARED)
 
-    return render(request, 'recipe_groups/recipe_list.html',
+    return render(request, 'openeats/recipe_list.html',
                   {'recipe_list': recipe_list, 'category': course_object.title})
 
 
@@ -24,7 +24,7 @@ def cuisine_recipes(request, pk):
     cuisine_object = get_object_or_404(Cuisine, pk=pk)
     recipe_list = cuisine_object.recipe_set.filter(shared=Recipe.SHARE_SHARED)
 
-    return render(request, 'recipe_groups/recipe_list.html',
+    return render(request, 'openeats/recipe_list.html',
                   {'recipe_list': recipe_list, 'category': cuisine_object.title})
 
 
@@ -44,7 +44,7 @@ def cuisine_pop(request):
 
 class CourseList(ListView):
     context_object_name = 'course'
-    template_name = 'openeats/recipe_groups/course_list.html'
+    template_name = 'openeats/course_list.html'
     queryset = Course.objects.all()
 
 
@@ -56,19 +56,12 @@ class CuisineList(ListView):
 class CourseCreate(CreateView):
     model = Course
     success_url = reverse_lazy('course_list')
-    template_name = 'openeats/recipe_groups/course_form.html'
+    template_name = 'openeats/course_form.html'
     fields = ['title']
-
-
-class CourseUpdate(UpdateView):
-    model = Course
 
 
 class CuisineCreate(CreateView):
     model = Cuisine
-    template_name = 'openeats/recipe_groups/course_form.html'
+    template_name = 'openeats/course_form.html'
     success_url = reverse_lazy('recipe')
-
-
-class CuisineUpdate(UpdateView):
-    model = Cuisine
+    fields = ['title']

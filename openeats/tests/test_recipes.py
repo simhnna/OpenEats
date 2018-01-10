@@ -83,7 +83,7 @@ class recipeViewsTestCase(WebTest):
         resp = self.client.get(reverse('print_recipe', kwargs={'pk': recipe.pk}))
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(resp.context['recipe'].pk, recipe.pk)
-        self.assertEqual(resp.templates[0].name, 'recipe/recipe_print.html')
+        self.assertEqual(resp.templates[0].name, 'openeats/recipe_print.html')
 
     def test_edit(self):
         recipe = Recipe.objects.get(pk=1)

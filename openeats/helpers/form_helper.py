@@ -25,4 +25,4 @@ def handlePopAdd(request, addForm, field):
         form = addForm()
 
     pageContext = {'form': form, 'field': field}
-    return render(request, "recipe_groups/popadd.html", pageContext)
+    return render(request, 'openeats/popadd.html', pageContext)

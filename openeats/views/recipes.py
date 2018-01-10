@@ -24,7 +24,7 @@ from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Spacer
 
 def index(request):
     recipe_list = Recipe.objects.filter(shared=Recipe.SHARE_SHARED).order_by('-pub_date')[0:6]
-    return render(request, 'recipe/index.html', {'new_recipes': recipe_list})
+    return render(request, 'openeats/index.html', {'new_recipes': recipe_list})
 
 
 def recipeShow(request, pk):
@@ -46,7 +46,7 @@ def recipeShow(request, pk):
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:
         raise Http404(_("Recipe %s is marked Private") % recipe.title)
     else:
-        return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
+        return render(request, 'openeats/recipe_detail.html', {'recipe': recipe})
 
 
 def recipePrint(request, pk):
@@ -56,7 +56,7 @@ def recipePrint(request, pk):
     if recipe.shared == Recipe.PRIVATE_SHARED and recipe.author != request.user:
         raise Http404(_('Recipe %s is marked Private') % recipe.title)
     else:
-        return render(request, 'recipe/recipe_print.html', {'recipe': recipe})
+        return render(request, 'openeats/recipe_print.html', {'recipe': recipe})
 
 
 @login_required
@@ -90,7 +90,7 @@ def recipe(request, user=None, pk=None):
             form.fields['title'].widget.attrs['readonly'] = True
 
         formset = IngFormSet(instance=recipe_inst)
-    return render(request, 'recipe/recipe_form.html', {'form': form, 'formset': formset, })
+    return render(request, 'openeats/recipe_form.html', {'form': form, 'formset': formset, })
 
 
 def recipeUser(request, shared, user):
@@ -106,7 +106,7 @@ def recipeUser(request, shared, user):
         recipe_list = Recipe.objects.filter(author__username=user,
                                             shared=Recipe.PRIVATE_SHARED).order_by('-pub_date')
 
-    return render(request, 'recipe/recipe_userlist.html',
+    return render(request, 'openeats/recipe_userlist.html',
                   {'recipe_list': recipe_list, 'user': user, 'shared': shared})
 
 

@@ -15,7 +15,7 @@ class CourseTest(TestCase):
         """Test the course web page"""
         response = self.client.get(reverse('course_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'openeats/recipe_groups/course_list.html')
+        self.assertTemplateUsed(response, 'openeats/course_list.html')
         courses = response.context['object_list']
         self.assertEqual(len(courses), 6,
                          'There should be 5 courses on the page but we found %s' % len(courses))
