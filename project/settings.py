@@ -45,8 +45,6 @@ ugettext = lambda s: s
 
 LANGUAGES = (
      ('en', ugettext('English')),
-     ('de', ugettext('German')),
-     ('es', ugettext('Spanish')),
    )
 
 SITE_ID = 1
@@ -64,12 +62,12 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(BASE_PATH, 'site-media')
+MEDIA_ROOT = os.path.join(BASE_PATH, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/site-media/'
+MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 
@@ -124,8 +122,6 @@ LOCALE_PATHS = (
 ROOT_URLCONF = 'project.urls'
 
 INSTALLED_APPS = (
-    #'grappelli.dashboard',
-    #'grappelli',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -133,16 +129,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.staticfiles',
-    #'taggit',
-    #'taggit_templatetags',
-    #'registration',
-    #'profiles',
     #'imagekit',
-    #'djangoratings',
     #'haystack',
     'pagination',
     'django_extensions',
-    #'relationships',
     'openeats',
 )
 
