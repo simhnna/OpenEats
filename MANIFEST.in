@@ -1,0 +1,5 @@
+include *.md
+recursive-include openeats *.py *.html *.po *.mo
+graft openeats/static
+prune openeats/tests
+
